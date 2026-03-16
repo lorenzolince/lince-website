@@ -41,3 +41,15 @@ body {
 .main {
     padding: 30px;
 }
+
+.maintenance {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    padding: 15px;
+    margin-top: 20px;
+    color: #856404;
+    font-family: Arial, sans-serif;
+}
+.maintenance h2 {
+    margin-top: 0;
+}
