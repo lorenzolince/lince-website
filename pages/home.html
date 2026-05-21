@@ -1,15 +1,42 @@
 <div class="home">
-    <h1>{{title}}</h1>
-    <p>{{message}}</p>
+    <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1650&q=80')">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1 class="hero-title">{{title}}</h1>
+                <p class="hero-subtitle">Soluciones tecnológicas: desarrollo a medida, outsourcing, infraestructura en la nube y en sitio.</p>
+                <div class="hero-ctas">
+                    <a href="#!/servicios" class="btn btn-primary">Ver servicios</a>
+                    <a href="#!/contactos" class="btn btn-outline">Contáctanos</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Mensaje de mantenimiento -->
-    <div class="maintenance">
-        <h2>Sitio en mantenimiento</h2>
-        <p>Estamos trabajando para mejorar la página.</p>
-        <p>Contáctanos:</p>
-        <ul>
-            <li>Email: <a href="mailto:LorenzoLince@lincetechnology.net">LorenzoLince@lincetechnology.net</a></li>
-            <li>Teléfono: <a href="tel:+50763910681">+507 6391-0681</a></li>
-        </ul>
-    </div>
+    <section class="section services-preview">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="cards">
+                <div class="card" ng-repeat="s in services | limitTo:3">
+                    <img ng-src="{{s.img}}" alt="{{s.title}}" class="card-img">
+                    <h3 class="card-title">{{s.title}}</h3>
+                    <p class="card-desc">{{s.desc}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about-cta">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <h2>¿Por qué Lince Technology?</h2>
+                    <p>{{company.about}}</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1200&q=80" alt="Automatización y tecnología" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1541729602410-3b1d4d4b0f0a?auto=format&fit=crop&w=1200&q=80'" />
+                </div>
+            </div>
+        </div>
+    </section>
+
 </div>

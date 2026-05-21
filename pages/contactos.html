@@ -1,0 +1,63 @@
+<div class="page contactos">
+  <section class="hero-contact" style="background-image: url('https://images.unsplash.com/photo-1505685296765-3a2736de412f?auto=format&fit=crop&w=1600&q=80')">
+    <div class="hero-overlay">
+      <div class="container">
+        <h1 class="hero-title">Contacto</h1>
+        <p class="hero-subtitle">Hablemos de su proyecto. Estamos listos para ayudarle a transformar su negocio.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container contact-main">
+    <div class="contact-panel">
+      <div class="contact-card">
+        <h3>Envíanos un mensaje</h3>
+        <p class="lead">Complete el formulario y le responderemos lo antes posible.</p>
+        <form id="contactForm" onsubmit="return sendMail(event)">
+          <label>Nombre
+            <input type="text" id="name" required>
+          </label>
+          <label>Email
+            <input type="email" id="email" required>
+          </label>
+          <label>Asunto
+            <input type="text" id="subject" required>
+          </label>
+          <label>Mensaje
+            <textarea id="message" rows="6" required></textarea>
+          </label>
+          <div class="contact-actions">
+            <button type="submit" class="btn btn-primary">Enviar correo</button>
+            <button type="button" class="btn btn-outline" onclick="document.getElementById('contactForm').reset()">Limpiar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="info-card contact-info">
+        <h3>Información</h3>
+        <p>Email: <a href="mailto:LorenzoLince@lincetechnology.net">LorenzoLince@lincetechnology.net</a></p>
+        <p>Teléfono: <a href="tel:+50763910681">+507 6391-0681</a></p>
+        <p>Dirección: Ciudad, País</p>
+        <div class="socials">
+          <a href="#">LinkedIn</a> · <a href="#">Twitter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function sendMail(e) {
+      e.preventDefault();
+      var name = encodeURIComponent(document.getElementById('name').value);
+      var email = encodeURIComponent(document.getElementById('email').value);
+      var subject = encodeURIComponent(document.getElementById('subject').value);
+      var message = encodeURIComponent(document.getElementById('message').value);
+      var body = encodeURIComponent('Nombre: ' + decodeURIComponent(name) + '\nEmail: ' + decodeURIComponent(email) + '\n\n' + decodeURIComponent(message));
+      var mailto = 'mailto:LorenzoLince@lincetechnology.net'
+                + '?subject=' + subject
+                + '&body=' + body;
+      window.location.href = mailto;
+      return false;
+    }
+  </script>
+</div>

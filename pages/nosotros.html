@@ -1,0 +1,43 @@
+<div class="page nosotros">
+  <section class="hero-nosotros" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80')">
+    <div class="hero-overlay">
+      <div class="container">
+        <h1 class="hero-title">Nosotros</h1>
+        <p class="hero-subtitle">Expertos en automatización, transformación digital y desarrollo a la medida.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="company-sections container">
+    <div class="grid-2">
+      <div class="card mission">
+        <h2>Misión</h2>
+        <p>{{company.mision}}</p>
+      </div>
+      <div class="card vision">
+        <h2>Visión</h2>
+        <p>{{company.vision}}</p>
+      </div>
+    </div>
+
+    <div class="values">
+      <h2>Valores</h2>
+      <ul class="value-list">
+        <li ng-repeat="v in company.values">{{v}}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="team-section container">
+    <h2>Nuestro Equipo</h2>
+    <p class="lead">Profesionales en desarrollo, infraestructura y consultoría, con experiencia en proyectos críticos y de alta disponibilidad.</p>
+
+    <div class="team-grid">
+      <div class="team-card" ng-repeat="t in team">
+        <img ng-src="{{t.img}}" alt="{{t.name}}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=60'">
+        <h3>{{t.name}}</h3>
+        <p class="role">{{t.role}}</p>
+      </div>
+    </div>
+  </section>
+</div>
