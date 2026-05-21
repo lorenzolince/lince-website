@@ -28,6 +28,10 @@ body{
 .menu a{color:#d1d5db;margin-left:20px;text-decoration:none;padding:8px 10px;border-radius:6px}
 .menu a:hover{background:rgba(255,255,255,0.04);color:#fff}
 .menu .btn-cta{background:var(--color-accent);color:#042024;padding:8px 14px;border-radius:8px;font-weight:600}
+.whatsapp-btn{background:linear-gradient(90deg,#25D366,#128C7E);color:#fff;padding:8px 12px;border-radius:8px;margin-left:12px;font-weight:700;text-decoration:none}
+.whatsapp-btn:hover{opacity:0.95}
+.instagram-btn{background:linear-gradient(90deg,#feda75,#f58529,#dd2a7b,#8134af,#515bd4);color:#fff;padding:8px 12px;border-radius:8px;margin-left:8px;font-weight:700;text-decoration:none}
+.instagram-btn:hover{opacity:0.95}
 .menu-toggle{display:none;background:transparent;border:none;color:#fff;font-size:20px}
 
 .hero{height:62vh;background-size:cover;background-position:center;display:flex;align-items:center}
