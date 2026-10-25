@@ -8,7 +8,7 @@ export default function ContactPage() {
     <div className="page contactos">
       <Hero
         className="hero-contact"
-        subtitle="Hablemos de su proyecto. Estamos listos para ayudarle a transformar su negocio."
+        subtitle="Conversemos sobre su reto de integración, una evaluación técnica o el uso de Generate Service en su entorno."
         title="Contacto"
       />
       <section className="container contact-main">
@@ -24,9 +24,9 @@ export default function ContactPage() {
             <p>Teléfono: <a href="tel:+50763910681">+507 6391-0681</a></p>
             <p>Dirección: Ciudad, País</p>
             <div className="socials">
-              <a href="https://linkedin.com" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/lorenzo-lince" rel="noopener noreferrer" target="_blank">LinkedIn</a>
               <span aria-hidden="true"> · </span>
-              <a href="https://twitter.com" rel="noopener noreferrer" target="_blank">Twitter</a>
+              <a href="https://x.com/lorenzolince" rel="noopener noreferrer" target="_blank">X</a>
             </div>
           </aside>
         </div>

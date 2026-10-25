@@ -1,59 +1,83 @@
-export const company = {
-  about:
-    "En Lince Technology ayudamos a las empresas a acelerar su transformación digital mediante automatización de procesos, consultoría tecnológica y desarrollo de software a la medida. Diseñamos soluciones que aumentan la eficiencia operativa, reducen costes y mejoran la experiencia de usuario. Nuestra propuesta combina precisión técnica, planificación rigurosa y resiliencia operativa para entregar resultados confiables y medibles.",
-  mission:
-    "Proveer soluciones tecnológicas confiables y a la medida que impulsen la transformación digital de nuestros clientes.",
-  vision: "Ser el socio tecnológico de referencia en la región, reconocido por la calidad y compromiso.",
-  values: ["Precisión", "Certeza", "Confianza", "Resiliencia", "Innovación"],
+export const links = {
+  platform: "https://generate-service.com/",
+  testRepository: "https://github.com/lorenzolince/generate-service-test",
 };
 
-export const services = [
+export const company = {
+  about:
+    "Lince Technology desarrolla soluciones de integración y automatización para equipos que necesitan conectar sistemas, modernizar operaciones y entregar software confiable.",
+  mission:
+    "Diseñar productos y soluciones tecnológicas que conviertan la complejidad de integración en resultados operativos claros.",
+  vision:
+    "Ser un aliado tecnológico de referencia para organizaciones que modernizan sus plataformas y procesos de integración.",
+  values: ["Rigor técnico", "Transparencia", "Evolución continua", "Confiabilidad", "Enfoque práctico"],
+};
+
+export const capabilities = [
   {
-    title: "Desarrollo a la medida",
-    description: "Aplicaciones web y móviles diseñadas para sus procesos y objetivos de negocio.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60",
+    title: "Convierta lógica existente en servicios",
+    description:
+      "Transforme procedimientos, funciones, queries, packages y estructuras de datos en servicios listos para integrar.",
+    icon: "01",
   },
   {
-    title: "Outsourcing & Soporte",
-    description: "Equipos dedicados y soporte remoto para mantener su operación disponible.",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60",
+    title: "Trabaje con el protocolo adecuado",
+    description:
+      "Genere APIs REST, GraphQL, gRPC o SOAP según las necesidades de sus consumidores y sistemas actuales.",
+    icon: "02",
   },
   {
-    title: "Infraestructura (Nube / On-prem)",
-    description: "Diseño, implementación y administración de infraestructura en nube o en sitio.",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",
+    title: "Orqueste flujos empresariales",
+    description:
+      "Conecte APIs, bases de datos, mensajería, archivos y tareas programadas dentro de una misma solución.",
+    icon: "03",
   },
   {
-    title: "Seguridad y CloudOps",
-    description: "Servicios de seguridad, auditoría y operaciones en la nube para mantener sus sistemas protegidos.",
-    image: "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=800&q=60",
-  },
-  {
-    title: "Data & Analytics",
-    description: "Integración, almacenamiento y análisis de datos para obtener insights accionables.",
-    image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=60",
+    title: "Reciba artefactos que puede adaptar",
+    description:
+      "Obtenga paquetes de despliegue, configuración y código fuente para extender la solución según su contexto.",
+    icon: "04",
   },
 ];
 
-export const team = [
+export const useCases = [
   {
-    name: "Lorenzo Díaz",
-    role: "CTO / Arquitecto de Soluciones",
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=60",
+    title: "Modernización de datos",
+    description:
+      "Exponga lógica establecida en Oracle, SQL Server, PostgreSQL, MySQL o MariaDB mediante interfaces modernas.",
   },
   {
-    name: "Ana Gómez",
-    role: "Lead Developer",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=60",
+    title: "Integración entre sistemas",
+    description:
+      "Conecte aplicaciones nuevas y heredadas con APIs, mensajería, archivos y transformaciones de contratos.",
   },
   {
-    name: "Carlos Pérez",
-    role: "Ingeniero DevOps",
-    image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=600&q=60",
+    title: "Automatización operativa",
+    description:
+      "Procese eventos, directorios, transferencias SFTP y tareas programadas con flujos repetibles.",
+  },
+];
+
+export const testSteps = [
+  {
+    number: "01",
+    title: "Seleccione un escenario",
+    description: "Utilice motores, scripts SQL y esquemas de ejemplo preparados para evaluar una capacidad concreta.",
+    image: "/images/generate-service-test/datasource-selection.png",
+    alt: "Selección de objetos desde un datasource en Generate Service",
   },
   {
-    name: "María Ruiz",
-    role: "Consultora de Transformación",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=60",
+    number: "02",
+    title: "Genere y ejecute",
+    description: "Cree el microservicio y valide sus endpoints con una interfaz de prueba, Postman o Kreya.",
+    image: "/images/generate-service-test/test-interface.png",
+    alt: "Interfaz de pruebas de Generate Service Test",
+  },
+  {
+    number: "03",
+    title: "Llévelo a su entorno",
+    description: "Genere esquemas desde su propia red con el cliente local cuando necesite conservar sus conexiones internamente.",
+    image: "/images/generate-service-test/local-schema-generation.png",
+    alt: "Generación local de esquemas de base de datos",
   },
 ];

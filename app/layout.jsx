@@ -5,7 +5,7 @@ export const metadata = {
     default: "Lince Technology",
     template: "%s | Lince Technology",
   },
-  description: "Soluciones tecnológicas modernas para empresas.",
+  description: "Lince Technology desarrolla soluciones de integración empresarial y Generate Service.",
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",
