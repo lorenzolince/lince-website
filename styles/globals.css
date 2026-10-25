@@ -100,9 +100,21 @@ a { color: inherit; }
 
 .introduction { background: var(--surface); }
 .capability-grid { display: grid; gap: 18px; grid-template-columns: repeat(4, 1fr); }
-.capability-card { background: var(--white); border: 1px solid var(--line); border-radius: 12px; min-height: 230px; padding: 26px; }
-.capability-number { color: var(--blue); display: block; font-size: 13px; font-weight: 800; letter-spacing: .08em; margin-bottom: 44px; }
+.capability-card { background: var(--white); border: 1px solid var(--line); border-radius: 12px; min-height: 280px; padding: 26px; }
+.capability-number { color: var(--blue); display: block; font-size: 13px; font-weight: 800; letter-spacing: .08em; margin-bottom: 14px; }
 .capability-card h3 { font-size: 18px; letter-spacing: -.02em; line-height: 1.25; margin: 0 0 10px; }
+.product-visual { align-items: center; background: #eef5ff; border-radius: 8px; color: var(--blue-dark); display: flex; height: 74px; justify-content: center; margin-bottom: 18px; overflow: hidden; }
+.product-visual span { border: 1px solid rgb(22 100 232 / 25%); border-radius: 4px; font-size: 9px; font-weight: 800; letter-spacing: .04em; padding: 5px 6px; }
+.product-visual-sources { gap: 5px; position: relative; }
+.product-visual-sources .visual-source { color: var(--muted); font-size: 8px; }
+.product-visual-sources .visual-hub { background: var(--blue); border-color: var(--blue); border-radius: 50%; color: var(--white); padding: 8px 5px; }
+.product-visual-sources .visual-output { background: var(--white); }
+.product-visual-protocols { flex-wrap: wrap; gap: 6px; padding: 10px 24px; }
+.product-visual-protocols span { background: var(--white); }
+.product-visual-flows { gap: 8px; }
+.product-visual-flows i { background: var(--blue); display: block; height: 1px; width: 18px; }
+.product-visual-artifacts { gap: 7px; }
+.product-visual-artifacts span { background: var(--white); padding: 12px 7px; }
 
 .workflow-section { background: var(--navy); color: var(--white); }
 .workflow { align-items: center; display: grid; gap: 70px; grid-template-columns: 1fr 1.1fr; }
@@ -131,6 +143,7 @@ a { color: inherit; }
 .product-details { background: var(--surface); }
 .product-detail-grid { display: grid; gap: 52px; grid-template-columns: repeat(2, 1fr); }
 .product-detail-grid article { border-top: 1px solid var(--line); padding-top: 26px; }
+.product-detail-image { border-radius: 9px; display: block; height: 210px; margin: 0 0 26px; object-fit: cover; width: 100%; }
 .feature-list { color: var(--muted); margin: 22px 0 0; padding-left: 20px; }
 .feature-list li { margin-bottom: 10px; }
 .product-cta { background: var(--navy); color: var(--white); }
@@ -139,6 +152,29 @@ a { color: inherit; }
 .product-cta-content { align-items: center; display: flex; gap: 40px; justify-content: space-between; }
 .product-cta-content .hero-ctas { justify-content: flex-end; margin: 0; }
 .product-cta .btn-outline { border-color: rgb(255 255 255 / 40%); color: var(--white); }
+.local-client-section { background: var(--white); padding: 96px 0; }
+.local-client { align-items: center; display: grid; gap: 70px; grid-template-columns: 1fr 1fr; }
+.local-client h2 { font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -.04em; line-height: 1.14; margin: 0 0 18px; }
+.local-client-content > p:not(.eyebrow) { color: var(--muted); margin: 0 0 28px; }
+.local-client-benefits { display: grid; gap: 18px; margin-bottom: 26px; }
+.local-client-benefits article { align-items: flex-start; display: flex; gap: 14px; }
+.local-client-benefits span { color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: .08em; padding-top: 2px; }
+.local-client-benefits h3 { font-size: 17px; margin: 0 0 3px; }
+.local-client-benefits p { color: var(--muted); margin: 0; }
+.local-client-benefits code { background: var(--surface); border-radius: 4px; color: var(--ink); font-size: .9em; padding: 1px 4px; }
+.local-client-visual { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; margin: 0; padding: 16px; }
+.local-client-visual img { border: 1px solid var(--line); border-radius: 7px; display: block; max-width: 100%; }
+.local-client-visual figcaption { color: var(--muted); font-size: 13px; margin-top: 12px; }
+.local-validation-section { background: var(--surface); }
+.local-validation { align-items: center; display: grid; gap: 70px; grid-template-columns: 1fr 1fr; }
+.validation-visual { background: var(--white); border: 1px solid var(--line); border-radius: 12px; margin: 0; padding: 16px; }
+.validation-visual img { border: 1px solid var(--line); border-radius: 7px; display: block; max-width: 100%; }
+.validation-visual figcaption { color: var(--muted); font-size: 13px; margin-top: 12px; }
+.local-validation h2 { font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -.04em; line-height: 1.14; margin: 0 0 18px; }
+.local-validation > div > p:not(.eyebrow) { color: var(--muted); margin: 0 0 26px; }
+.validation-flow { align-items: center; display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 25px; }
+.validation-flow span { background: var(--white); border: 1px solid var(--line); border-radius: 5px; color: var(--ink); font-size: 13px; font-weight: 700; padding: 8px 10px; }
+.validation-flow i { color: var(--blue); font-size: 18px; font-style: normal; }
 
 .company-sections, .team-section { padding-bottom: 64px; padding-top: 64px; }
 .grid-2 { display: grid; gap: 22px; grid-template-columns: 1fr 1fr; margin-bottom: 35px; }
@@ -199,6 +235,8 @@ a { color: inherit; }
   .evidence-preview, .contact-panel { grid-template-columns: 1fr; }
   .company-story { gap: 38px; grid-template-columns: 1fr; }
   .specialized-support { gap: 38px; grid-template-columns: 1fr; }
+  .local-client { gap: 38px; grid-template-columns: 1fr; }
+  .local-validation { gap: 38px; grid-template-columns: 1fr; }
   .contact-panel { margin-top: 0; padding-top: 20px; }
   .test-step, .test-step:nth-child(even) { grid-template-columns: 1fr; }
   .test-step:nth-child(even) .test-step-content { order: 1; }
@@ -220,6 +258,7 @@ a { color: inherit; }
   .capability-grid, .use-case-grid, .product-detail-grid, .grid-2, .team-grid, .work-principles { grid-template-columns: 1fr; }
   .company-story-section { padding: 68px 0; }
   .specialized-support-section { padding: 68px 0; }
+  .local-client-section { padding: 68px 0; }
   .evidence-header, .product-cta-content { align-items: flex-start; flex-direction: column; }
   .product-cta-content .hero-ctas { justify-content: flex-start; }
   .workflow-diagram { font-size: 12px; gap: 5px; }
