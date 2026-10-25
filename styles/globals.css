@@ -42,8 +42,10 @@ a { color: inherit; }
 .logo-img { height: 38px; margin-right: 10px; width: 38px; }
 .logo-text { font-size: 17px; font-weight: 700; letter-spacing: -.02em; }
 .menu { align-items: center; display: flex; gap: 4px; }
-.menu a { border-radius: 6px; color: #d6e0ed; font-size: 14px; padding: 8px 10px; text-decoration: none; }
-.menu a:hover, .menu a[aria-current="page"] { background: rgb(255 255 255 / 10%); color: var(--white); }
+.menu a { border-radius: 6px; color: #d6e0ed; font-size: 14px; padding: 8px 10px; position: relative; text-decoration: none; }
+.menu a:hover { color: var(--white); }
+.menu a[aria-current="page"]:not(.btn-cta) { color: var(--white); }
+.menu a[aria-current="page"]:not(.btn-cta)::after { background: var(--blue); border-radius: 2px; bottom: -7px; content: ""; height: 2px; left: 10px; position: absolute; right: 10px; }
 .menu .btn-cta { background: var(--aqua); color: #04231f; font-weight: 700; margin-left: 6px; padding: 9px 14px; }
 .menu-toggle { background: transparent; border: 0; color: var(--white); cursor: pointer; display: none; font-size: 26px; }
 .social-links { display: flex; gap: 8px; }
@@ -148,6 +150,27 @@ a { color: inherit; }
 .team-card img { border-radius: 8px; height: 180px; object-fit: cover; width: 100%; }
 .team-card h3 { margin: 12px 0 4px; }
 .team-card .role { color: var(--muted); font-size: 13px; margin: 0; }
+.company-story-section { background: var(--surface); padding: 90px 0; }
+.company-story { align-items: center; display: grid; gap: 70px; grid-template-columns: 1fr 1fr; }
+.company-story h2 { font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -.04em; line-height: 1.14; margin: 0 0 18px; }
+.company-story p:not(.eyebrow) { color: var(--muted); margin: 0 0 16px; }
+.company-story img { border-radius: 12px; box-shadow: var(--shadow); min-height: 370px; object-fit: cover; width: 100%; }
+.work-principles { display: grid; gap: 24px; grid-template-columns: repeat(3, 1fr); }
+.work-principles article { border-top: 2px solid var(--blue); padding-top: 18px; }
+.work-principles span { color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: .08em; }
+.work-principles h3 { font-size: 20px; letter-spacing: -.02em; margin: 12px 0 8px; }
+.work-principles p { color: var(--muted); margin: 0; }
+.specialized-support-section { background: var(--navy); color: var(--white); padding: 90px 0; }
+.specialized-support { align-items: center; display: grid; gap: 70px; grid-template-columns: .9fr 1.1fr; }
+.specialized-support > img { border-radius: 12px; min-height: 470px; object-fit: cover; width: 100%; }
+.specialized-support .eyebrow { color: var(--aqua); }
+.specialized-support h2 { font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -.04em; line-height: 1.14; margin: 0 0 18px; }
+.specialized-support > div > p:not(.eyebrow) { color: #b9c8d9; margin: 0 0 28px; }
+.support-options { display: grid; gap: 18px; margin-bottom: 26px; }
+.support-options article { border-left: 2px solid var(--aqua); padding-left: 16px; }
+.support-options h3 { font-size: 17px; margin: 0 0 3px; }
+.support-options p { color: #b9c8d9; margin: 0; }
+.specialized-support .text-link { color: var(--aqua); }
 
 .test-step-list { display: grid; gap: 26px; }
 .test-step { align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; display: grid; gap: 36px; grid-template-columns: .75fr 1.25fr; overflow: hidden; padding: 20px; }
@@ -174,6 +197,8 @@ a { color: inherit; }
   .capability-grid { grid-template-columns: repeat(2, 1fr); }
   .workflow { gap: 42px; grid-template-columns: 1fr; }
   .evidence-preview, .contact-panel { grid-template-columns: 1fr; }
+  .company-story { gap: 38px; grid-template-columns: 1fr; }
+  .specialized-support { gap: 38px; grid-template-columns: 1fr; }
   .contact-panel { margin-top: 0; padding-top: 20px; }
   .test-step, .test-step:nth-child(even) { grid-template-columns: 1fr; }
   .test-step:nth-child(even) .test-step-content { order: 1; }
@@ -192,7 +217,9 @@ a { color: inherit; }
   .hero-product { min-height: 530px; }
   .hero-overlay { padding: 30px 0; }
   .hero-content { padding: 44px 20px; }
-  .capability-grid, .use-case-grid, .product-detail-grid, .grid-2, .team-grid { grid-template-columns: 1fr; }
+  .capability-grid, .use-case-grid, .product-detail-grid, .grid-2, .team-grid, .work-principles { grid-template-columns: 1fr; }
+  .company-story-section { padding: 68px 0; }
+  .specialized-support-section { padding: 68px 0; }
   .evidence-header, .product-cta-content { align-items: flex-start; flex-direction: column; }
   .product-cta-content .hero-ctas { justify-content: flex-start; }
   .workflow-diagram { font-size: 12px; gap: 5px; }
