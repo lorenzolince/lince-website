@@ -1,4 +1,4 @@
-"use server";
+"use client";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_FIELD_LENGTH = 2_000;
