@@ -1,0 +1,16 @@
+{
+  "name": "lince-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server/start.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server/start.js",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.4.7",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  }
+}
