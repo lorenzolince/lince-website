@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const navigation = [
   { href: "/home", label: "Inicio" },
-  { href: "/servicios", label: "Producto" },
+  { href: "/generate-service", label: "Generate Service" },
   { href: "/pruebas", label: "Pruebas" },
   { href: "/nosotros", label: "Empresa" },
   { href: "/contactos", label: "Contacto", contact: true },

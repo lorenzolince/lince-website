@@ -6,11 +6,15 @@
     "dev": "node server/start.js",
     "build": "next build",
     "start": "NODE_ENV=production node server/start.js",
-    "lint": "next lint"
+    "lint": "next lint",
+    "process-images": "node scripts/process-generate-service-images.js"
   },
   "dependencies": {
     "next": "^15.4.7",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
   }
 }
