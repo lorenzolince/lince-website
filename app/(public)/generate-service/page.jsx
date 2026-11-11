@@ -1,14 +1,23 @@
 import Link from 'next/link';
 import { generateServiceMarketing } from '../../components/generateServiceMarketing';
-import { links } from '../../components/site-data';
 
-export const metadata = { 
-  title: 'Generate Service - Genere microservicios Spring Boot en minutos',
-  description: 'Genere APIs REST, GraphQL, gRPC y SOAP desde procedimientos almacenados, esquemas y bases de datos. Código fuente, Docker y CI/CD incluidos.',
+export const metadata = {
+  title: 'Generate Service - Microservicios Spring Boot desde su base de datos',
+  description: 'Genere APIs REST, GraphQL, gRPC y SOAP desde procedimientos, funciones y queries. Modo Test de 1 día para iterar económicamente. Despliegue end-to-end en Kubernetes con ArgoCD. Credenciales seguras.',
 };
 
 export default function GenerateServicePage() {
-  const { hero, problems, howItWorks, flowPreviews, localClient, differentiators, deliverables, audiences, demoVideos, faq, finalCta } = generateServiceMarketing;
+  const {
+    hero,
+    problems,
+    advantagesSection,
+    howItWorks,
+    modesComparison,
+    testAdvantage,
+    architectureSection,
+    faq,
+    finalCta,
+  } = generateServiceMarketing;
 
   return (
     <div className="marketing-page">
@@ -24,8 +33,8 @@ export default function GenerateServicePage() {
                   key={btn.label}
                   className={`btn ${btn.primary ? 'btn-primary' : 'btn-outline'}`}
                   href={btn.href}
-                  rel="noreferrer"
-                  target="_blank"
+                  rel={btn.href.startsWith('http') ? 'noreferrer' : undefined}
+                  target={btn.href.startsWith('http') ? '_blank' : undefined}
                 >
                   {btn.label}
                 </a>
@@ -33,27 +42,16 @@ export default function GenerateServicePage() {
             </div>
           </div>
         </div>
-        <img
-          alt={hero.image.alt}
-          src={hero.image.src}
-          style={{ 
-            display: 'absolute', 
-            left: 0, 
-            top: 0, 
-            width: '100%', 
-            height: '100%',
-            objectFit: 'cover',
-            zIndex: -1,
-          }}
-        />
       </section>
 
-      {/* Problemas que resuelve */}
+      {/* Problemas */}
       <section className="section problems-section">
         <div className="container">
           <div className="section-heading">
-            <h2>Problemas que resuelve</h2>
-            <p>Desde traducción manual hasta CI/CD automático: Generate Service elimina los cuellos de botella en integración.</p>
+            <h2>El reto: de lógica de negocio a APIs en producción</h2>
+            <p>
+              Sus procedimientos, funciones y queries contienen lógica probada en producción. Exponerlas como APIs y llevarlas a Kubernetes requiere resolver múltiples problemas simultáneamente.
+            </p>
           </div>
           <div className="problems-grid">
             {problems.map((problem, idx) => (
@@ -66,176 +64,123 @@ export default function GenerateServicePage() {
         </div>
       </section>
 
+      {/* Ventajas */}
+      <section className="section advantages-section">
+        <div className="container">
+          <div className="section-heading">
+            <h2>{advantagesSection.title}</h2>
+            <p>{advantagesSection.description}</p>
+          </div>
+          <div className="advantages-grid">
+            {advantagesSection.advantages.map((adv, idx) => (
+              <article key={idx} className="advantage-card">
+                <h3>{adv.title}</h3>
+                <p>{adv.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Cómo funciona */}
       <section className="section how-it-works-section">
         <div className="container">
           <div className="section-heading">
-            <h2>Cómo funciona en 3 pasos</h2>
-            <p>Desde la fuente de datos hasta el microservicio desplegado en producción.</p>
+            <h2>Cómo funciona</h2>
+            <p>Tres pasos simples desde la configuración hasta el despliegue en producción.</p>
           </div>
           <div className="workflow-steps">
             {howItWorks.map((step) => (
               <article key={step.step} className="workflow-step">
-                <span className="step-number">{step.step}</span>
+                <span className="step-number">{step.icon}</span>
                 <h3>{step.title}</h3>
                 <p>{step.description}</p>
-                <ul className="step-details">
-                  {step.details.map((detail) => (
-                    <li key={detail}>{detail}</li>
-                  ))}
-                </ul>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Vista previa de flujos */}
-      <section className="section flow-previews-section">
+      {/* Modos de Generación */}
+      <section className="section modes-section">
         <div className="container">
           <div className="section-heading">
-            <h2>Vista previa de los flujos principales</h2>
-            <p>Cada escenario tiene una guía visual completa disponible en nuestra guía de uso.</p>
+            <h2>Modos de generación: elige el que se adapte a ti</h2>
+            <p>Generate Service ofrece cuatro formas diferentes de generar, compilar y desplegar. Selecciona la que mejor se ajuste a tu flujo de trabajo.</p>
           </div>
-          <div className="flow-preview-grid">
-            {flowPreviews.map((flow) => (
-              <article key={flow.id} className="flow-preview-card">
-                <img
-                  alt={flow.image.alt}
-                  height={flow.image.height}
-                  src={flow.image.src}
-                  width={flow.image.width}
-                />
-                <h3>{flow.title}</h3>
-                <p>{flow.description}</p>
-                <Link className="text-link" href={flow.href}>
-                  Ver en la guía →
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Cliente local */}
-      <section className="section local-client-section">
-        <div className="container">
-          <article className="local-client">
-            <div className="local-client-content">
-              <h2>{localClient.title}</h2>
-              <p>{localClient.description}</p>
-              <div className="local-client-benefits">
-                {localClient.benefits.map((benefit, idx) => (
-                  <article key={idx}>
-                    <span className="benefit-badge">✓</span>
-                    <div>
-                      <h3>{benefit.title}</h3>
-                      <p>{benefit.description}</p>
-                    </div>
-                  </article>
+          <div className="modes-table-wrapper">
+            <table className="modes-table">
+              <thead>
+                <tr>
+                  <th>Modo</th>
+                  <th>Qué entrega</th>
+                  <th>Quién compila</th>
+                  <th>Vigencia</th>
+                  <th>Precio relativo</th>
+                  <th>Ideal para</th>
+                </tr>
+              </thead>
+              <tbody>
+                {modesComparison.modes.map((mode) => (
+                  <tr key={mode.name}>
+                    <td className="mode-name">{mode.name}</td>
+                    <td>{mode.description}</td>
+                    <td>{mode.what}</td>
+                    <td>{mode.lifespan}</td>
+                    <td>{mode.cost}</td>
+                    <td>{mode.ideal}</td>
+                  </tr>
                 ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Test: Ventaja */}
+      <section className="section test-advantage-section">
+        <div className="container">
+          <div className="section-heading">
+            <h2>Modo Test: itere económicamente en 24 horas</h2>
+            <p>
+              Genere versiones de prueba que viven un día en su infraestructura local. Pruebe con datos reales, ajuste endpoints y protocolos, y genere la versión final solo cuando esté seguro. Cuesta apenas ~10% del precio final.
+            </p>
+          </div>
+          <div className="test-points">
+            {testAdvantage.points.map((point, idx) => (
+              <div key={idx} className="test-point">
+                <span className="point-icon">✓</span>
+                <p>{point}</p>
               </div>
-            </div>
-            <div className="local-client-visuals">
-              {localClient.images.map((image, idx) => (
-                <figure key={idx} className="local-client-visual">
-                  <img
-                    alt={image.alt}
-                    height={image.height}
-                    src={image.src}
-                    width={image.width}
-                  />
-                </figure>
-              ))}
-            </div>
-          </article>
-        </div>
-      </section>
-
-      {/* Diferenciadores */}
-      <section className="section differentiators-section">
-        <div className="container">
-          <div className="section-heading">
-            <h2>Diferenciadores</h2>
-            <p>Por qué Generate Service es la opción para equipos que demandan velocidad y control.</p>
-          </div>
-          <div className="differentiators-grid">
-            {differentiators.map((diff, idx) => (
-              <article key={idx} className="differentiator-card">
-                <h3>{diff.title}</h3>
-                <p>{diff.description}</p>
-              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Entregables */}
-      <section className="section deliverables-section">
+      {/* Arquitectura */}
+      <section className="section architecture-section">
         <div className="container">
           <div className="section-heading">
-            <h2>Qué recibe</h2>
-            <p>Cada generación entrega artefactos completos listos para producción.</p>
+            <h2>{architectureSection.title}</h2>
+            <p>{architectureSection.description}</p>
           </div>
-          <div className="deliverables-grid">
-            {deliverables.map((item, idx) => (
-              <article key={idx} className="deliverable-card">
-                <span className="deliverable-icon">{item.icon}</span>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </article>
+          <div className="architecture-points">
+            {architectureSection.points.map((point, idx) => (
+              <div key={idx} className="arch-point">
+                <span className="icon">→</span>
+                <p>{point}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Públicos objetivo */}
-      <section className="section audiences-section">
-        <div className="container">
-          <div className="section-heading">
-            <h2>Para quién es</h2>
-            <p>Generate Service acelera entregas en múltiples contextos.</p>
-          </div>
-          <div className="audiences-grid">
-            {audiences.map((audience, idx) => (
-              <article key={idx} className="audience-card">
-                <h3>{audience.title}</h3>
-                <p>{audience.description}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Videos de demostración */}
-      {demoVideos.some(v => v.videoId !== 'PENDIENTE') && (
-        <section className="section demo-videos-section">
-          <div className="container">
-            <div className="section-heading">
-              <h2>Videos de demostración</h2>
-              <p>Vea Generate Service en acción.</p>
-            </div>
-            <div className="demo-videos-grid">
-              {demoVideos.map((video, idx) => 
-                video.videoId !== 'PENDIENTE' ? (
-                  <article key={idx} className="demo-video-card">
-                    <h3>{video.title}</h3>
-                    <p>{video.description}</p>
-                    {/* TODO: Agregar reproductor de video una vez disponible el videoId */}
-                  </article>
-                ) : null
-              )}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* FAQ */}
       <section className="section faq-section">
         <div className="container">
           <div className="section-heading">
             <h2>Preguntas frecuentes</h2>
-            <p>Resuelva sus dudas sobre capabilities, seguridad y despliegue.</p>
+            <p>Las dudas más comunes sobre seguridad, modos de generación y despliegue.</p>
           </div>
           <div className="faq-list">
             {faq.map((item, idx) => (
@@ -253,7 +198,6 @@ export default function GenerateServicePage() {
         <div className="container">
           <div className="product-cta-content">
             <div>
-              <p className="eyebrow">Acelere su transformación digital</p>
               <h2>{finalCta.title}</h2>
               <p>{finalCta.subtitle}</p>
             </div>

@@ -387,3 +387,120 @@ a { color: inherit; }
   .local-client { gap: 30px; grid-template-columns: 1fr; }
   .local-client-visuals { gap: 12px; }
 }
+
+/* Guide tabs styling */
+.guide-tabs { margin-bottom: 48px; border-bottom: 2px solid var(--line); }
+.tabs-nav { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tab-button {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 18px;
+  transition: all .2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.tab-button:hover {
+  color: var(--ink);
+  background: var(--surface);
+  border-radius: 6px 6px 0 0;
+}
+
+.tab-button.active {
+  border-bottom-color: var(--blue);
+  color: var(--blue);
+}
+
+.guide-section-content { padding: 32px 0; }
+.section-header { margin-bottom: 40px; }
+.section-header h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); letter-spacing: -.04em; margin: 0 0 12px; color: var(--navy); }
+.section-header p { color: var(--muted); margin: 0; font-size: 15px; }
+
+.guide-steps { display: grid; gap: 40px; }
+
+.step-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+  padding: 24px;
+  background: var(--surface);
+  border-radius: 10px;
+  border-left: 4px solid var(--blue);
+}
+
+.step-content {
+  display: flex;
+  gap: 16px;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--blue);
+  color: var(--white);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.step-text h3 {
+  font-size: 18px;
+  letter-spacing: -.02em;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+.step-text p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.step-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-image img {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 900px) {
+  .step-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .tabs-nav {
+    gap: 0;
+  }
+  
+  .tab-button {
+    padding: 12px 12px;
+    font-size: 14px;
+  }
+}

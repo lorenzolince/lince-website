@@ -1,10 +1,11 @@
 // Datos de marketing para Generate Service
-// Incluye hero, problemas, flujos, diferenciadores, entregables, públicos objetivo y FAQ
+// Fuente: Flujos.zip - Contenido verificado y documentado
+// Nov 10, 2026
 
 export const generateServiceMarketing = {
   hero: {
-    title: 'Genere microservicios Spring Boot en minutos',
-    subtitle: 'Transforme lógica de base de datos y esquemas en APIs REST, GraphQL, gRPC y SOAP completamente funcionales, con código fuente, Docker y CI/CD listos para desplegar.',
+    title: 'De la lógica de base de datos a APIs en producción, sin escribir código',
+    subtitle: 'Generate Service convierte cinco orígenes de datos en microservicios Spring Boot completamente funcionales, documentados y listos para Kubernetes: esquemas de base de datos (Oracle, SQL Server, PostgreSQL, MySQL, MariaDB), REST, SOAP (XSD), GraphQL y gRPC (PROTO).',
     cta: [
       {
         label: 'Probar gratis',
@@ -12,14 +13,14 @@ export const generateServiceMarketing = {
         primary: true,
       },
       {
-        label: 'Ver escenarios de prueba',
-        href: 'https://github.com/lorenzolince/generate-service-test',
+        label: 'Ver la guía visual',
+        href: '/generate-service/guia',
         primary: false,
       },
     ],
     image: {
-      src: '/images/generate-service/portada.webp',
-      alt: 'Página de inicio de Generate Service',
+      src: '/images/portada.webp',
+      alt: 'Generate Service: plataforma de generación de microservicios',
       width: 1600,
       height: 856,
     },
@@ -27,359 +28,211 @@ export const generateServiceMarketing = {
 
   problems: [
     {
-      title: 'Procesos manuales que consumen tiempo',
+      title: 'Translación manual de lógica empresarial a código',
       description:
-        'Traducir lógica de base de datos a código de API requiere horas de escritura manual, pruebas y depuración en cada cambio.',
+        'Sus procedimientos y funciones contienen la lógica de negocio probada en producción. Convertirla a APIs exige semanas de desarrollo, tests y validación.',
     },
     {
-      title: 'Deuda técnica en sistemas heredados',
+      title: 'Exposición de credenciales con herramientas SaaS',
       description:
-        'Sus procedimientos almacenados, funciones y queries contienen lógica valiosa que permanece desaprovechada en archivos SQL sin exponer a sistemas nuevos.',
+        'Plataformas en la nube pública requieren conexión directa a su base de datos. Eso viola políticas de seguridad en la mayoría de las empresas.',
     },
     {
-      title: 'Múltiples protocolos y tecnologías',
+      title: 'Ciclos de iteración largos antes de validar en producción',
       description:
-        'Cada consumidor pide REST, otros GraphQL o gRPC; desarrollar todas las variantes paralelamente consume recursos y multiplica el mantenimiento.',
+        'Sin una forma económica de probar cambios en su infraestructura, los equipos esperan meses entre versiones. Los ajustes son caros e inciertos.',
     },
     {
-      title: 'Credenciales expuestas en la nube',
+      title: 'Despliegue manual y propenso a errores',
       description:
-        'Generar esquemas en línea requiere compartir credenciales de base de datos con servidores externos, comprometiendo seguridad.',
+        'Llevar una API de desarrollo a producción requiere múltiples pasos manuales: compilación, dockerización, variables, secretos, pipeline, Kubernetes.',
     },
     {
-      title: 'Ciclos de despliegue largos',
+      title: 'Dependencia de múltiples especialistas',
       description:
-        'Ir de una idea a un servicio funcionando en producción toma días o semanas, cuando podría ser horas con herramientas adecuadas.',
-    },
-    {
-      title: 'Fragmentación entre equipos',
-      description:
-        'Backend, integración, DevOps y seguridad trabajan en silos. Necesitan una plataforma que unificar criterios y acelerar entregas.',
+        'Desarrollo, DevOps, Seguridad e Integración trabajan en silos. Cada cambio requiere coordinación entre equipos.',
     },
   ],
 
-  howItWorks: [
-    {
-      step: '01',
-      title: 'Seleccione su origen de datos',
-      description:
-        'Cargue un esquema (JSON, XSD, PROTO, SDL) o conecte directamente a su base de datos (Oracle, SQL Server, PostgreSQL, MySQL, MariaDB). Elija los objetos que desea exponer.',
-      details: [
-        'Procedimientos almacenados',
-        'Funciones y queries',
-        'Packages y estructuras',
-        'Esquemas en múltiples formatos',
-      ],
-    },
-    {
-      step: '02',
-      title: 'Configure los protocolos',
-      description:
-        'Decida si necesita REST, GraphQL, gRPC, SOAP o una combinación. Agregue mensajería (RabbitMQ, ActiveMQ, Kafka), SFTP, SMB o tareas programadas. Configure seguridad y validaciones.',
-      details: [
-        'APIs REST con OpenAPI',
-        'GraphQL con queries y mutations',
-        'gRPC con protobuf',
-        'SOAP con WSDL',
-        'Mensajería integrada',
-      ],
-    },
-    {
-      step: '03',
-      title: 'Reciba artefactos completos',
-      description:
-        'Obtenga código fuente compilable, JAR/WAR, Dockerfile, docker-compose, .env configurado y scripts de arranque. Opcionalmente envíe directamente a GitLab, Jenkins, Azure DevOps o ArgoCD para CI/CD automático.',
-      details: [
-        'Código fuente listo para adaptar',
-        'Binarios compilados (JAR/WAR)',
-        'Infraestructura como código (Docker, compose)',
-        'Variables de entorno y configuración',
-        'Integración con CI/CD',
-      ],
-    },
-  ],
-
-  flowPreviews: [
-    {
-      id: 'flujo-codigo-fuente',
-      title: 'Generar código fuente desde BD local',
-      description: 'Exponga procedimientos y queries usando el cliente local, sin exponer credenciales a la nube.',
-      image: {
-        src: '/images/generate-service/config-connection-local-database.webp',
-        alt: 'Configuración de conexión a base de datos local',
-        width: 1600,
-        height: 704,
-      },
-      href: '#flujo-codigo-fuente',
-    },
-    {
-      id: 'flujo-cicd',
-      title: 'Desplegar APIs en CI/CD automático',
-      description: 'Envíe el proyecto generado a su pipeline GitLab, Jenkins o Azure DevOps, y tenga la API en producción en minutos.',
-      image: {
-        src: '/images/generate-service/pipeline-build-api.webp',
-        alt: 'Pipeline de compilación en CI/CD',
-        width: 1600,
-        height: 819,
-      },
-      href: '#flujo-cicd',
-    },
-    {
-      id: 'flujo-argocd',
-      title: 'Gestionar con ArgoCD',
-      description: 'Mantenga las APIs sincronizadas con GitOps: cambios en el repositorio se despliegan automáticamente en Kubernetes.',
-      image: {
-        src: '/images/generate-service/argocd-deployed.webp',
-        alt: 'Aplicación desplegada en ArgoCD',
-        width: 1600,
-        height: 740,
-      },
-      href: '#flujo-argocd',
-    },
-    {
-      id: 'flujo-pruebas',
-      title: 'Probar APIs en tiempo real',
-      description: 'Levante la API generada localmente y valide endpoints con Swagger, Postman o Kreya. Vigencia de 24 horas.',
-      image: {
-        src: '/images/generate-service/test-api-rest.webp',
-        alt: 'Interfaz de pruebas de API REST',
-        width: 1600,
-        height: 773,
-      },
-      href: '#flujo-pruebas',
-    },
-  ],
-
-  localClient: {
-    title: 'El cliente local: seguridad y control',
-    description:
-      'generate-service-client es un contenedor Docker que ejecuta dentro de su red. Genera esquemas sin exponer credenciales, prueba APIs antes de llevarlas a producción y administra todas las conexiones de forma segura.',
-    benefits: [
+  advantagesSection: {
+    title: 'Ventajas de Generate Service',
+    description: 'Todo lo que necesita para ir de la idea a producción en un día, no en semanas.',
+    advantages: [
       {
-        title: 'Seguridad de datos',
-        description: 'Las credenciales de base de datos nunca salen de su red interna. Los esquemas se generan localmente.',
-      },
-      {
-        title: 'Pruebas antes de ir a producción',
-        description: 'Levante la API completa en 24 horas, valide endpoints, y descargue el código y artefactos compilados.',
-      },
-      {
-        title: 'Gestión centralizada de conexiones',
+        title: 'Modo Test: itere económicamente 24 horas',
         description:
-          'Configure una sola vez bases de datos, colas de mensajes, SFTP y SMB. Todas las APIs generadas reutilizan esas credenciales de forma segura.',
-      },
-    ],
-    images: [
-      {
-        src: '/images/generate-service/config-environment-client.webp',
-        alt: 'Configuración de entorno en el cliente local',
-        width: 1600,
-        height: 844,
+          'Genere versiones de prueba de su API que viven 1 día en su infraestructura local. Pruebe con datos reales, ajuste endpoints y autenticación, y genere la versión final solo cuando esté seguro. Cuesta una fracción del precio final.',
       },
       {
-        src: '/images/generate-service/test-api-generate-local.webp',
-        alt: 'Pruebas de API generada localmente',
-        width: 1600,
-        height: 872,
+        title: 'Cliente local: compile en su infraestructura',
+        description:
+          'generate-service-client es un contenedor Docker que se ejecuta dentro de su infraestructura. Descarga esquemas, genera código localmente y despliega en Kubernetes on-premises, cloud privada o intranet corporativa.',
+      },
+      {
+        title: 'Despliegue end-to-end en Kubernetes con ArgoCD',
+        description:
+          'Desde Generate Service hasta un pod en ejecución en Kubernetes. Pipeline automatizado, GitOps, secretos encriptados, modelo declarativo, sin intervención manual.',
       },
     ],
   },
 
-  differentiators: [
+  howItWorks: [
     {
-      title: 'Multiplexación de protocolos',
+      step: '1',
+      title: 'Registre su base de datos una sola vez',
       description:
-        'Un solo origen de datos genera REST, GraphQL, gRPC y SOAP simultáneamente. Atienda a todos tus consumidores sin duplicar lógica.',
-    },
-    {
-      title: 'Integración orquestada',
-      description:
-        'No solo expone datos: conecta bases de datos, colas de mensajes, archivos (SFTP/SMB) y tareas programadas en un mismo flujo.',
-    },
-    {
-      title: 'Código fuente que es tuyo',
-      description:
-        'Recibe Spring Boot compilado y personalizable. No estás atrapado en una plataforma SaaS: el código es de tu propiedad.',
-    },
-    {
-      title: 'CI/CD integrado',
-      description:
-        'Envía el proyecto directamente a GitLab, Jenkins, Azure DevOps o ArgoCD. Tu pipeline se activa automáticamente.',
-    },
-    {
-      title: 'Seguridad local-first',
-      description:
-        'Genera esquemas dentro de tu red con el cliente local. Credenciales nunca transitan por internet.',
-    },
-    {
-      title: 'Sin cerrojos propietarios',
-      description:
-        'Despliega en Kubernetes, contenedores privados o servidores propios. Dominas toda la infraestructura.',
-    },
-  ],
-
-  deliverables: [
-    {
-      icon: '📝',
-      title: 'Código fuente',
-      description: 'Proyecto Spring Boot compilable, con estructura estándar, tests unitarios y documentación integrada.',
-    },
-    {
-      icon: '📦',
-      title: 'Artefactos binarios',
-      description: 'JAR o WAR compilado, listo para ejecución. Incluye todas las dependencias necesarias.',
-    },
-    {
-      icon: '🐳',
-      title: 'Dockerización',
-      description: 'Dockerfile optimizado y docker-compose con la API, bases de datos de prueba y herramientas de desarrollo.',
-    },
-    {
+        'Configure datasources (Oracle, SQL Server, PostgreSQL, MySQL, MariaDB), cliente local, CI/CD e integraciones. Cada uno es opcional; solo los que necesita.',
       icon: '⚙️',
-      title: 'Configuración',
-      description: 'Archivo .env preconfigurado con placeholders para conexiones, mensajería, SFTP, SMB y secretos.',
     },
     {
-      icon: '🚀',
-      title: 'Scripts de arranque',
-      description: 'Bash/Batch para iniciar, detener, construir y desplegar la API en diferentes entornos.',
+      step: '2',
+      title: 'Seleccione la lógica que desea exponer',
+      description:
+        'Marque los procedimientos, funciones, packages y queries que quiere convertir en endpoints. Generate Service descubre el catálogo de su base y los presenta en una lista.',
+      icon: '✓',
     },
     {
-      icon: '📚',
-      title: 'Documentación',
-      description: 'OpenAPI/Swagger, Postman collections, guías de configuración y referencias de endpoints.',
-    },
-    {
-      icon: '🔗',
-      title: 'CI/CD listos',
-      description: 'Pipelines preconstruidos para GitLab CI, Jenkins, Azure Pipelines y ArgoCD. Personalízalos según tus criterios.',
-    },
-    {
-      icon: '✅',
-      title: 'Tests automatizados',
-      description: 'Suite de pruebas unitarias e integración, configuradas para ejecutarse en cada build.',
+      step: '3',
+      title: 'Elija un modo y reciba el resultado',
+      description:
+        'Src (código fuente en ZIP), Build (binario compilado), Test (prueba 24h en su red), o CI/CD (despliegue directo a Kubernetes). La plataforma genera y entrega en minutos.',
+      icon: '📦',
     },
   ],
 
-  audiences: [
-    {
-      title: 'Equipos de integración',
-      description:
-        'Aceleren proyectos de transformación digital conectando sistemas legados con arquitecturas modernas sin escribir boilerplate.',
-    },
-    {
-      title: 'Arquitectos empresariales',
-      description:
-        'Diseñen ecosistemas de APIs multiprotocolo con gobernanza clara, sin depender de múltiples equipos especializados.',
-    },
-    {
-      title: 'Desarrolladores Backend',
-      description:
-        'Pasen menos tiempo escribiendo CRUD y validaciones, más tiempo innovando. El código generado sigue convenciones estándar.',
-    },
-    {
-      title: 'Equipos de DevOps/SRE',
-      description:
-        'Unifiquen el despliegue de APIs mediante CI/CD e infraestructura como código. Reduzcan la variabilidad entre ambientes.',
-    },
-    {
-      title: 'Startups y consultoras',
-      description:
-        'Entreguen prototipos y POCs en días, no semanas. Compitan ofreciendo velocidad sin sacrificar calidad o escalabilidad.',
-    },
-    {
-      title: 'Empresas con datos heredados',
-      description:
-        'Expongan lógica existente en Oracle, SQL Server o cualquier BD moderna mediante interfaces que sus clientes esperan (REST, GraphQL).',
-    },
-  ],
+  modesComparison: {
+    title: 'Modos de generación',
+    description: 'Elija el que mejor se adapte a su flujo de trabajo.',
+    modes: [
+      {
+        name: 'Src',
+        description: 'Código fuente Maven descargable',
+        what: 'Usted',
+        compiles: true,
+        lifespan: 'Permanente',
+        cost: 'Base',
+        ideal: 'Máximo control y versionado',
+      },
+      {
+        name: 'Build',
+        description: 'Binario JAR compilado',
+        what: 'generate-service-client',
+        compiles: false,
+        lifespan: 'Permanente',
+        cost: 'Base',
+        ideal: 'Ejecución inmediata',
+      },
+      {
+        name: 'Test',
+        description: 'API en ejecución 24 horas',
+        what: 'generate-service-client',
+        compiles: false,
+        lifespan: '1 día',
+        cost: '~10% del Build',
+        ideal: 'Iterar antes de hacer build final',
+      },
+      {
+        name: 'CI/CD',
+        description: 'Despliegue end-to-end a Kubernetes',
+        what: 'generate-devops en pipeline',
+        compiles: false,
+        lifespan: 'Permanente',
+        cost: 'Base + DevOps',
+        ideal: 'Automatización total',
+      },
+    ],
+  },
 
-  demoVideos: [
-    {
-      title: 'Generar API REST desde procedimiento almacenado',
-      description: 'Vea cómo Generate Service toma un procedure de Oracle y genera un microservicio REST completo en menos de 2 minutos.',
-      // TODO: Agregar ID de video (YouTube, Vimeo, etc.)
-      videoId: 'PENDIENTE',
-    },
-    {
-      title: 'Desplegar en Kubernetes con ArgoCD',
-      description: 'Desde el proyecto generado hasta una aplicación corriendo en Kubernetes con GitOps y sincronización automática.',
-      // TODO: Agregar ID de video
-      videoId: 'PENDIENTE',
-    },
-    {
-      title: 'Configurar mensajería y SFTP',
-      description: 'Integre colas de mensajes y transferencias de archivos en la misma API sin código adicional.',
-      // TODO: Agregar ID de video
-      videoId: 'PENDIENTE',
-    },
-  ],
+  testAdvantage: {
+    title: '¿Por qué usar Test antes de Build?',
+    points: [
+      'Reduzca costos: pague ~10% en lugar del precio completo',
+      'Valide con datos reales en su infraestructura',
+      'Ajuste endpoints, autenticación, protocolos',
+      'Pruebe la integración con sus sistemas',
+      'Comparta la API con su equipo por 24 horas',
+      'Tenga certeza antes de pagar por la versión final',
+    ],
+  },
+
+  architectureSection: {
+    title: 'Arquitectura: separación de generación y compilación',
+    description:
+      'La plataforma genera en la nube, pero la compilación ocurre en su infraestructura. Así, sus bases de datos y credenciales nunca se exponen a internet.',
+    points: [
+      'Modo Src: código llega directo al navegador',
+      'Modos Build y Test: generate-service-client compila localmente',
+      'Modo CI/CD: generate-devops compila en su pipeline',
+      'Comunicación: HTTPS con autenticación JWT',
+      'Credenciales: nunca salen de su red',
+    ],
+  },
 
   faq: [
     {
+      question: '¿Cómo funciona la seguridad con generate-service-client?',
+      answer:
+        'El cliente se ejecuta en su red y maneja todas las credenciales localmente. La plataforma envía órdenes por HTTPS autenticado, pero nunca ve las credenciales. Descarga el proyecto comprimido, lo compila en su infraestructura y entrega el artefacto.',
+    },
+    {
+      question: '¿Puedo probar en modo Test sin generar Build?',
+      answer:
+        'Sí, es el propósito: genere en modo Test, pruebe por 24 horas con sus datos, ajuste lo que necesite, y solo cuando esté seguro, genere Build o CI/CD. Ahorra dinero y reduce riesgo.',
+    },
+    {
       question: '¿Qué bases de datos soporta?',
       answer:
-        'Generate Service trabaja con Oracle, SQL Server, PostgreSQL, MySQL y MariaDB. También acepta esquemas en JSON, XSD, PROTO y SDL (GraphQL).',
+        'Oracle, SQL Server, PostgreSQL, MySQL y MariaDB. También acepta esquemas en JSON, XSD, PROTO y SDL para generar APIs que consuman esas especificaciones.',
     },
     {
-      question: '¿Puedo usar el código generado en producción?',
+      question: '¿Puedo desplegar directo a Kubernetes?',
       answer:
-        'Sí. El código generado es una aplicación Spring Boot completa, compilable y lista para desplegar. Incluye validaciones, manejo de errores y patrones estándar de empresa.',
+        'Sí, en modo CI/CD. La plataforma envía el artefacto al pipeline de GitLab, Jenkins o Azure DevOps con la imagen generate-devops, que compila dentro del pipeline. ArgoCD sincroniza automáticamente a Kubernetes.',
     },
     {
-      question: '¿El código generado es suyo o mío?',
+      question: '¿El código generado es modificable?',
       answer:
-        'Es completamente tuyo. Recibes el código fuente, binarios y toda la documentación. Puedes modificarlo, distribuirlo y desplegarlo donde quieras sin restricciones.',
+        'En modo Src, sí: recibe el código fuente Maven completo y lo puede editar, versionarlo y desplegarlo como quiera. En Build y Test, también recibe el código junto con el binario.',
     },
     {
-      question: '¿Cómo protege mis credenciales?',
+      question: '¿Cuánto tiempo vive un artefacto Test?',
       answer:
-        'Con generate-service-client ejecuta todo dentro de tu red privada. Las credenciales nunca salen de tu infraestructura. Para producción, usa variables de entorno o gestores de secretos como Vault o AWS Secrets Manager.',
+        '24 horas. Después se destruye automáticamente. Es suficiente para probar, compartir con el equipo y decidir si procede con la versión final.',
     },
     {
-      question: '¿Puede generar APIs sin base de datos?',
+      question: '¿Requiere instalar Maven o Docker en mi equipo?',
       answer:
-        'Sí. Si proporcionas esquemas (JSON, XSD, PROTO, SDL), Generate Service genera las APIs directamente sin necesidad de conectar a una base de datos.',
+        'No para modos Build y Test: generate-service-client ya lo incluye. Para modo Src, sí necesita Maven. Para CI/CD, el pipeline lo maneja.',
     },
     {
-      question: '¿Soporta múltiples protocolos en la misma API?',
+      question: '¿Qué protocolos puedo generar?',
       answer:
-        'Sí. Un origen de datos puede generar simultáneamente REST, GraphQL, gRPC y SOAP. Cada consumidor elige el protocolo que necesita.',
+        'REST, GraphQL, gRPC, SOAP y WebSocket. En modo CI/CD también puede agregar mensajería (RabbitMQ, ActiveMQ, Kafka), listeners SFTP y SMB, y tareas programadas con Quartz.',
     },
     {
-      question: '¿Puedo integrar mensajería y SFTP?',
+      question: '¿Dónde almacena Generate Service los artefactos?',
       answer:
-        'Sí. Puede configurar RabbitMQ, ActiveMQ, Kafka, SFTP y SMB como parte del flujo. Las APIs generadas incluyen operaciones para enviar y recibir mensajes, archivos, etc.',
+        'En el cliente local si usa generate-service-client, dentro de su espacio de trabajo (no en la nube). Si usa modo CI/CD, en su pipeline y en Kubernetes.',
     },
     {
-      question: '¿Cómo se integra con CI/CD?',
+      question: '¿Puedo usar Generate Service sin el cliente local?',
       answer:
-        'El proyecto generado incluye Dockerfiles y scripts listos para GitLab CI, Jenkins, Azure Pipelines y ArgoCD. Solo configura las variables de entorno y activa el pipeline.',
-    },
-    {
-      question: '¿Cuál es la diferencia entre versión SaaS y cliente local?',
-      answer:
-        'La plataforma SaaS (https://generate-service.com/) genera APIs en la nube. El cliente local (generate-service-client) genera esquemas dentro de tu red privada sin exponer credenciales. Ambos entregan el mismo código compilable.',
-    },
-    {
-      question: '¿Cuánto cuesta?',
-      answer:
-        '// TODO: Agregar información de precios. Acceda a https://generate-service.com/ para consultar planes y ofertas actuales.',
+        'Sí, en modo Src sin clientes. Pero para modos Build, Test y CI/CD necesita registrar un cliente o un webhook de CI/CD.',
     },
   ],
 
   finalCta: {
-    title: 'Acelere sus proyectos de integración',
+    title: 'Comience a generar hoy',
     subtitle:
-      'Deje que Generate Service maneje la generación de código. Usted enfóquese en lógica de negocio, no en boilerplate.',
+      'La guía visual le muestra cada flujo paso a paso, con imágenes reales de la plataforma y del cliente local.',
     buttons: [
       {
-        label: 'Probar ahora (gratis)',
+        label: 'Probar gratis',
         href: 'https://generate-service.com/',
         primary: true,
       },
       {
-        label: 'Ver la guía de uso',
+        label: 'Ver guía visual',
         href: '/generate-service/guia',
         primary: false,
       },
