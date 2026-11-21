@@ -1,81 +1,68 @@
-import Link from 'next/link';
-import { generateServiceMarketing } from '../../components/generateServiceMarketing';
+import Link from "next/link";
+import PageHero from "../../components/PageHero";
+import { generateServiceMarketing } from "../../components/generateServiceMarketing";
 
 export const metadata = {
-  title: 'Generate Service - Microservicios Spring Boot desde su base de datos',
-  description: 'Genere APIs REST, GraphQL, gRPC y SOAP desde procedimientos, funciones y queries. Modo Test de 1 día para iterar económicamente. Despliegue end-to-end en Kubernetes con ArgoCD. Credenciales seguras.',
+  title: "Generate Service: de tu base de datos a microservicios en minutos",
+  description:
+    "Convierte procedimientos, funciones y queries en microservicios Spring Boot listos para producción: REST, GraphQL, gRPC, SOAP, mensajería, archivos y CI/CD. Credenciales en tu red y código fuente tuyo.",
 };
 
+function Boton({ btn, oscuro }) {
+  const externo = btn.href.startsWith("http");
+  const clase = btn.primary ? "btn btn-primary home-btn-glow" : oscuro ? "btn home-btn-ghost" : "btn btn-outline";
+  return externo ? (
+    <a className={clase} href={btn.href} rel="noreferrer" target="_blank">{btn.label}</a>
+  ) : (
+    <Link className={clase} href={btn.href}>{btn.label}</Link>
+  );
+}
+
 export default function GenerateServicePage() {
-  const {
-    hero,
-    problems,
-    advantagesSection,
-    howItWorks,
-    modesComparison,
-    testAdvantage,
-    architectureSection,
-    faq,
-    finalCta,
-  } = generateServiceMarketing;
+  const { hero, challenge, connections, howItWorks, modes, testAdvantage, security, faq, finalCta } = generateServiceMarketing;
 
   return (
     <div className="marketing-page">
-      {/* Hero */}
-      <section className="hero hero-generate-service">
-        <div className="hero-overlay">
-          <div className="hero-content">
-            <h1 className="hero-title">{hero.title}</h1>
-            <p className="hero-subtitle">{hero.subtitle}</p>
-            <div className="hero-ctas">
-              {hero.cta.map((btn) => (
-                <a
-                  key={btn.label}
-                  className={`btn ${btn.primary ? 'btn-primary' : 'btn-outline'}`}
-                  href={btn.href}
-                  rel={btn.href.startsWith('http') ? 'noreferrer' : undefined}
-                  target={btn.href.startsWith('http') ? '_blank' : undefined}
-                >
-                  {btn.label}
-                </a>
-              ))}
-            </div>
-          </div>
+      <PageHero eyebrow={hero.eyebrow} title={hero.title} accent={hero.accent} subtitle={hero.subtitle}>
+        <div className="home-ctas">
+          {hero.cta.map((btn) => <Boton key={btn.label} btn={btn} oscuro />)}
         </div>
-      </section>
+      </PageHero>
 
-      {/* Problemas */}
-      <section className="section problems-section">
+      {/* El reto (brochure, página 1) */}
+      <section className="section">
         <div className="container">
           <div className="section-heading">
-            <h2>El reto: de lógica de negocio a APIs en producción</h2>
-            <p>
-              Sus procedimientos, funciones y queries contienen lógica probada en producción. Exponerlas como APIs y llevarlas a Kubernetes requiere resolver múltiples problemas simultáneamente.
-            </p>
+            <p className="eyebrow">{challenge.eyebrow}</p>
+            <h2>{challenge.title}</h2>
+            <p>{challenge.description}</p>
           </div>
-          <div className="problems-grid">
-            {problems.map((problem, idx) => (
-              <article key={idx} className="problem-card">
-                <h3>{problem.title}</h3>
-                <p>{problem.description}</p>
+          <div className="home-pillars">
+            {challenge.pains.map((p) => (
+              <article key={p.title} className="home-pillar">
+                <span className="home-pillar-icon" aria-hidden="true">{p.icon}</span>
+                <h3>{p.title}</h3>
+                <p>{p.description}</p>
               </article>
             ))}
           </div>
+          <p className="gs-answer">{challenge.answer}</p>
         </div>
       </section>
 
-      {/* Ventajas */}
-      <section className="section advantages-section">
+      {/* Todas tus conexiones (brochure, página 3) */}
+      <section className="section home-steps-section">
         <div className="container">
           <div className="section-heading">
-            <h2>{advantagesSection.title}</h2>
-            <p>{advantagesSection.description}</p>
+            <p className="eyebrow">{connections.eyebrow}</p>
+            <h2>{connections.title}</h2>
           </div>
-          <div className="advantages-grid">
-            {advantagesSection.advantages.map((adv, idx) => (
-              <article key={idx} className="advantage-card">
-                <h3>{adv.title}</h3>
-                <p>{adv.description}</p>
+          <div className="gs-connections">
+            {connections.items.map((c) => (
+              <article key={c.title}>
+                <span aria-hidden="true">{c.icon}</span>
+                <h3>{c.title}</h3>
+                <p>{c.description}</p>
               </article>
             ))}
           </div>
@@ -83,108 +70,85 @@ export default function GenerateServicePage() {
       </section>
 
       {/* Cómo funciona */}
-      <section className="section how-it-works-section">
+      <section className="section">
         <div className="container">
           <div className="section-heading">
-            <h2>Cómo funciona</h2>
-            <p>Tres pasos simples desde la configuración hasta el despliegue en producción.</p>
+            <p className="eyebrow">Cómo funciona</p>
+            <h2>Tres pasos, sin código repetitivo.</h2>
           </div>
-          <div className="workflow-steps">
-            {howItWorks.map((step) => (
-              <article key={step.step} className="workflow-step">
-                <span className="step-number">{step.icon}</span>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
-              </article>
+          <ol className="home-steps gs-steps-3">
+            {howItWorks.map((s) => (
+              <li key={s.step}>
+                <span>{s.step}</span>
+                <h3>{s.title}</h3>
+                <p>{s.description}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      {/* Modos de Generación */}
-      <section className="section modes-section">
+      {/* Modos */}
+      <section className="section home-steps-section">
         <div className="container">
           <div className="section-heading">
-            <h2>Modos de generación: elige el que se adapte a ti</h2>
-            <p>Generate Service ofrece cuatro formas diferentes de generar, compilar y desplegar. Selecciona la que mejor se ajuste a tu flujo de trabajo.</p>
+            <p className="eyebrow">Cómo lo recibes</p>
+            <h2>Elige el modo que se adapta a ti.</h2>
+            <p>Los endpoints son los mismos en todos los modos; cambia solo cómo los recibes.</p>
           </div>
-          <div className="modes-table-wrapper">
-            <table className="modes-table">
+          <div className="gs-table-wrap">
+            <table className="gs-table">
               <thead>
-                <tr>
-                  <th>Modo</th>
-                  <th>Qué entrega</th>
-                  <th>Quién compila</th>
-                  <th>Vigencia</th>
-                  <th>Precio relativo</th>
-                  <th>Ideal para</th>
-                </tr>
+                <tr><th>Modo</th><th>Qué recibes</th><th>Quién compila</th><th>Ideal para</th></tr>
               </thead>
               <tbody>
-                {modesComparison.modes.map((mode) => (
-                  <tr key={mode.name}>
-                    <td className="mode-name">{mode.name}</td>
-                    <td>{mode.description}</td>
-                    <td>{mode.what}</td>
-                    <td>{mode.lifespan}</td>
-                    <td>{mode.cost}</td>
-                    <td>{mode.ideal}</td>
+                {modes.map((m) => (
+                  <tr key={m.name}>
+                    <td><strong>{m.name}</strong></td><td>{m.what}</td><td>{m.who}</td><td>{m.ideal}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+          <div className="gs-test">
+            <div>
+              <h3>{testAdvantage.title}</h3>
+              <p>{testAdvantage.description}</p>
+            </div>
+            <ul>
+              {testAdvantage.points.map((p) => <li key={p}>{p}</li>)}
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* Test: Ventaja */}
-      <section className="section test-advantage-section">
+      {/* Seguridad */}
+      <section className="section workflow-section">
         <div className="container">
-          <div className="section-heading">
-            <h2>Modo Test: itere económicamente en 24 horas</h2>
-            <p>
-              Genere versiones de prueba que viven un día en su infraestructura local. Pruebe con datos reales, ajuste endpoints y protocolos, y genere la versión final solo cuando esté seguro. Cuesta apenas ~10% del precio final.
-            </p>
-          </div>
-          <div className="test-points">
-            {testAdvantage.points.map((point, idx) => (
-              <div key={idx} className="test-point">
-                <span className="point-icon">✓</span>
-                <p>{point}</p>
-              </div>
-            ))}
+          <div className="workflow">
+            <div>
+              <p className="eyebrow">{security.eyebrow}</p>
+              <h2>{security.title}</h2>
+              <p>{security.description}</p>
+              <Link className="text-link" href="/generate-service/guia/seguridad/">Más sobre seguridad <span aria-hidden="true">→</span></Link>
+            </div>
+            <ul className="gs-security">
+              {security.points.map((p) => <li key={p}>{p}</li>)}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* Arquitectura */}
-      <section className="section architecture-section">
-        <div className="container">
-          <div className="section-heading">
-            <h2>{architectureSection.title}</h2>
-            <p>{architectureSection.description}</p>
-          </div>
-          <div className="architecture-points">
-            {architectureSection.points.map((point, idx) => (
-              <div key={idx} className="arch-point">
-                <span className="icon">→</span>
-                <p>{point}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
+      {/* Preguntas frecuentes */}
       <section className="section faq-section">
         <div className="container">
           <div className="section-heading">
-            <h2>Preguntas frecuentes</h2>
-            <p>Las dudas más comunes sobre seguridad, modos de generación y despliegue.</p>
+            <p className="eyebrow">Preguntas frecuentes</p>
+            <h2>Lo que más nos preguntan.</h2>
           </div>
           <div className="faq-list">
-            {faq.map((item, idx) => (
-              <details key={idx} className="faq-item">
+            {faq.map((item) => (
+              <details key={item.question} className="faq-item">
                 <summary>{item.question}</summary>
                 <p>{item.answer}</p>
               </details>
@@ -193,27 +157,14 @@ export default function GenerateServicePage() {
         </div>
       </section>
 
-      {/* CTA Final */}
-      <section className="section product-cta">
-        <div className="container">
-          <div className="product-cta-content">
-            <div>
-              <h2>{finalCta.title}</h2>
-              <p>{finalCta.subtitle}</p>
-            </div>
-            <div className="hero-ctas">
-              {finalCta.buttons.map((btn) => (
-                <Link
-                  key={btn.label}
-                  className={`btn ${btn.primary ? 'btn-primary' : 'btn-outline'}`}
-                  href={btn.href}
-                  target={btn.href.startsWith('http') ? '_blank' : undefined}
-                  rel={btn.href.startsWith('http') ? 'noreferrer' : undefined}
-                >
-                  {btn.label}
-                </Link>
-              ))}
-            </div>
+      {/* Cierre */}
+      <section className="home-final">
+        <div className="home-hero-glow" aria-hidden="true" />
+        <div className="container home-final-inner">
+          <h2>{finalCta.title}</h2>
+          <p>{finalCta.subtitle}</p>
+          <div className="home-ctas">
+            {finalCta.buttons.map((btn) => <Boton key={btn.label} btn={btn} oscuro />)}
           </div>
         </div>
       </section>

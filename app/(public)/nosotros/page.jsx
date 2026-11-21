@@ -1,16 +1,25 @@
-import Hero from "../../components/Hero";
+import PageHero from "../../components/PageHero";
 import Link from "next/link";
-import { company } from "../../components/site-data";
+import { company, links } from "../../components/site-data";
+import { Tarjeta } from "../../components/videos/VideoGallery";
+import { videos } from "../../components/videos/videosData";
 
-export const metadata = { title: "Nosotros" };
+const podcast = videos.find((v) => v.categoria === "conversaciones");
+
+export const metadata = {
+  title: "Empresa",
+  description:
+    "Lince Technology, empresa panameña de software, creadora de Generate Service: misión, visión, valores y la historia detrás del producto.",
+};
 
 export default function AboutPage() {
   return (
     <div className="page nosotros">
-      <Hero
-        className="hero-nosotros"
-        subtitle="Ingeniería de software e integración para organizaciones que necesitan avanzar con seguridad técnica."
-        title="Lince Technology"
+      <PageHero
+        eyebrow="Lince Technology"
+        title="Software hecho en Panamá"
+        accent="para integrar sin fricción."
+        subtitle="Ingeniería de software e integración para empresas que quieren avanzar rápido y con seguridad."
       />
       <section className="company-sections container">
         <div className="grid-2">
@@ -30,16 +39,53 @@ export default function AboutPage() {
           </ul>
         </div>
       </section>
+
+      {/* ---------- Historia del fundador ---------- */}
+      <section className="section founder-section">
+        <div className="container founder">
+          <div className="founder-photo">
+            <img src="/images/fundador.webp" alt="Lorenzo Lince, fundador de Lince Technology y creador de Generate Service" width="600" height="600" />
+          </div>
+          <div>
+            <p className="eyebrow">La historia detrás de Generate Service</p>
+            <h2>Nació de escribir el mismo código una y otra vez.</h2>
+            <p>
+              Durante años, como arquitecto de software, vi a los equipos repetir el mismo trabajo en cada integración:
+              procedimiento, servicio, controlador, contratos, documentación, pipeline y despliegue. Semanas de esfuerzo
+              en código que no aporta nada nuevo al negocio.
+            </p>
+            <p>
+              Generate Service reúne todo ese conocimiento en una plataforma: tú eliges qué publicar y cómo recibirlo, y
+              la parte repetitiva se resuelve en minutos. Así tu equipo dedica su talento a lo que realmente hace
+              crecer tu empresa.
+            </p>
+            <p className="founder-sign">
+              <strong>Lorenzo Lince</strong>
+              <span>Fundador de Lince Technology · Creador de Generate Service</span>
+            </p>
+            {podcast && (
+              <div className="founder-podcast">
+                <p className="eyebrow">Escúchalo en el podcast</p>
+                <Tarjeta v={podcast} />
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
       <section className="company-story-section">
         <div className="container company-story">
           <div className="company-story-content">
             <p className="eyebrow">Una empresa detrás del producto</p>
             <h2>Experiencia práctica convertida en una plataforma.</h2>
             <p>
-              Lince Technology combina desarrollo de software, integración y operación tecnológica para resolver problemas que normalmente consumen tiempo en los equipos: exponer lógica existente, conectar sistemas y mantener flujos confiables.
+              Lince Technology combina desarrollo de software, integración y operación tecnológica para resolver los
+              problemas que más tiempo consumen en los equipos: exponer la lógica que ya existe, conectar sistemas y
+              mantener flujos confiables.
             </p>
             <p>
-              Generate Service nace de ese trabajo práctico. La plataforma reúne patrones y automatizaciones que permiten a los equipos dedicar más atención a las decisiones de negocio y menos al código repetitivo de integración.
+              Generate Service nace de ese trabajo práctico. La plataforma reúne patrones y automatizaciones para que tu
+              equipo dedique más atención a las decisiones de negocio y menos al código repetitivo de integración.
             </p>
           </div>
           <img
@@ -52,23 +98,23 @@ export default function AboutPage() {
         <div className="container">
           <div className="section-heading compact">
             <p className="eyebrow">Cómo trabajamos</p>
-            <h2>Una perspectiva técnica, clara y evolutiva.</h2>
+            <h2>Una mirada técnica, clara y pensada para evolucionar.</h2>
           </div>
           <div className="work-principles">
             <article>
               <span>01</span>
-              <h3>Entender el contexto</h3>
-              <p>Partimos de los sistemas, procesos y restricciones que ya forman parte de su operación.</p>
+              <h3>Entender tu contexto</h3>
+              <p>Partimos de los sistemas, procesos y restricciones que ya forman parte de tu operación.</p>
             </article>
             <article>
               <span>02</span>
               <h3>Simplificar la integración</h3>
-              <p>Priorizamos soluciones comprensibles que reduzcan complejidad sin ocultar decisiones importantes.</p>
+              <p>Buscamos soluciones fáciles de entender, que reduzcan la complejidad y dejen claras las decisiones importantes.</p>
             </article>
             <article>
               <span>03</span>
               <h3>Diseñar para evolucionar</h3>
-              <p>Entregamos una base que puede adaptarse a nuevos procesos, entornos y necesidades técnicas.</p>
+              <p>Entregamos una base que se adapta a nuevos procesos, entornos y necesidades técnicas.</p>
             </article>
           </div>
         </div>
@@ -81,9 +127,10 @@ export default function AboutPage() {
           />
           <div>
             <p className="eyebrow">Soporte especializado</p>
-            <h2>Apoyo para llevar sus integraciones a producción.</h2>
+            <h2>Te acompañamos a llevar tus integraciones a producción.</h2>
             <p>
-              Generate Service es una plataforma autogestionada. Cuando su equipo necesita acompañamiento adicional, Lince Technology puede ayudar a convertir el resultado en un flujo de entrega alineado con su operación.
+              Generate Service es una plataforma autogestionada. Cuando tu equipo necesita acompañamiento adicional,
+              Lince Technology te ayuda a convertir el resultado en un flujo de entrega alineado con tu operación.
             </p>
             <div className="support-options">
               <article>
@@ -92,14 +139,17 @@ export default function AboutPage() {
               </article>
               <article>
                 <h3>Despliegue continuo</h3>
-                <p>Integración con Argo CD para promover aplicaciones hacia Kubernetes de forma ordenada.</p>
+                <p>Integración con Argo CD para llevar tus aplicaciones a Kubernetes de forma ordenada.</p>
               </article>
               <article>
                 <h3>Acompañamiento técnico</h3>
-                <p>Adaptación de las plantillas a los entornos, flujos y controles definidos por su equipo.</p>
+                <p>Adaptamos las plantillas a los entornos, flujos y controles que define tu equipo.</p>
               </article>
             </div>
-            <Link className="text-link" href="/contactos">Conversemos sobre su flujo de entrega <span aria-hidden="true">→</span></Link>
+            <Link className="text-link" href="/contactos">Hablemos de tu flujo de entrega <span aria-hidden="true">→</span></Link>
+            <p className="founder-links">
+              <a className="text-link" href={links.platform} rel="noreferrer" target="_blank">Prueba Generate Service gratis ↗</a>
+            </p>
           </div>
         </div>
       </section>

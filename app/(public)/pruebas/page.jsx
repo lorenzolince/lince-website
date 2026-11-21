@@ -1,23 +1,36 @@
-import Hero from "../../components/Hero";
+import PageHero from "../../components/PageHero";
 import { links, testSteps } from "../../components/site-data";
 
-export const metadata = { title: "Generate Service Test" };
+export const metadata = {
+  title: "Generate Service Test",
+  description:
+    "Proyecto de prueba gratuito con bases de datos de ejemplo para Oracle, SQL Server, PostgreSQL, MySQL y MariaDB: genera, ejecuta y prueba tus microservicios.",
+};
 
 export default function TestPage() {
   return (
     <div className="page tests-page">
-      <Hero
-        className="hero-tests"
-        subtitle="Un recorrido práctico para evaluar microservicios generados con escenarios, esquemas y herramientas de prueba preparados."
-        title="Generate Service Test"
-      />
+      <PageHero
+        eyebrow="Generate Service Test"
+        title="Compruébalo tú mismo,"
+        accent="con datos reales."
+        subtitle="Un proyecto de prueba gratuito con bases de datos, esquemas y herramientas listas para generar y probar tus microservicios."
+      >
+        <div className="home-ctas">
+          <a className="btn btn-primary home-btn-glow" href={links.testRepository} rel="noreferrer" target="_blank">
+            Abrir el repositorio
+          </a>
+          <a className="btn home-btn-ghost" href="/generate-service/guia/primera-api-rest/">Seguir el tutorial</a>
+        </div>
+      </PageHero>
       <section className="section">
         <div className="container">
           <div className="section-heading">
-            <p className="eyebrow">Evidencia técnica</p>
-            <h2>Compruebe el resultado antes de adoptarlo.</h2>
+            <p className="eyebrow">Escenarios listos para usar</p>
+            <h2>Prueba el resultado antes de adoptarlo.</h2>
             <p>
-              Generate Service Test reúne motores, scripts SQL, archivos de esquema, configuraciones de gateway y una interfaz para validar servicios generados en escenarios reproducibles.
+              Generate Service Test reúne bases de datos de ejemplo, scripts SQL, archivos de esquema, configuraciones de
+              gateway y una interfaz para probar los servicios generados en escenarios que puedes repetir.
             </p>
           </div>
           <div className="test-step-list">
@@ -34,14 +47,17 @@ export default function TestPage() {
           </div>
         </div>
       </section>
-      <section className="section product-cta">
-        <div className="container product-cta-content">
-          <div>
-            <p className="eyebrow">Repositorio público</p>
-            <h2>Use los escenarios como guía para su propia evaluación.</h2>
-            <p>El repositorio explica cómo generar, ejecutar y validar servicios REST, GraphQL, gRPC y SOAP con diferentes motores de datos.</p>
+      <section className="home-final">
+        <div className="home-hero-glow" aria-hidden="true" />
+        <div className="container home-final-inner">
+          <h2>Usa los escenarios como guía para tu evaluación.</h2>
+          <p>El repositorio explica cómo generar, ejecutar y probar servicios REST, GraphQL, gRPC y SOAP con distintos motores de base de datos.</p>
+          <div className="home-ctas">
+            <a className="btn btn-primary home-btn-glow" href={links.testRepository} rel="noreferrer" target="_blank">
+              Ver Generate Service Test
+            </a>
+            <a className="btn home-btn-ghost" href={links.platform} rel="noreferrer" target="_blank">Pruébalo gratis</a>
           </div>
-          <a className="btn btn-primary" href={links.testRepository} rel="noreferrer" target="_blank">Ver Generate Service Test</a>
         </div>
       </section>
     </div>

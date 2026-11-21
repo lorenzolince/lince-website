@@ -1,5 +1,6 @@
 import Link from "next/link";
 import GuiaLayout, { BASE } from "../../../components/guia/GuiaLayout";
+import PageHero from "../../../components/PageHero";
 import { capitulos, grupos } from "../../../components/guia/guiaData";
 
 export const metadata = {
@@ -11,24 +12,17 @@ export const metadata = {
 export default function GuiaInicio() {
   return (
     <div className="marketing-page">
-      <section className="docs-hero">
-        <div className="container">
-          <p className="docs-eyebrow">Guía de Generate Service</p>
-          <h1>Aprende a generar tus APIs paso a paso</h1>
-          <p>
-            Desde tu primera API REST hasta el despliegue automático en Kubernetes: cómo funciona la
-            plataforma, cómo configurarla y cómo sacarle el máximo provecho.
-          </p>
-          <div className="hero-ctas">
-            <Link className="btn btn-primary" href={`${BASE}/primera-api-rest/`}>
-              Empieza con el tutorial
-            </Link>
-            <Link className="btn btn-outline" href={`${BASE}/como-funciona/`}>
-              Cómo funciona
-            </Link>
-          </div>
+      <PageHero
+        eyebrow="Guía de Generate Service"
+        title="Aprende a generar tus APIs"
+        accent="paso a paso."
+        subtitle="Desde tu primera API REST hasta el despliegue automático en Kubernetes: cómo funciona la plataforma, cómo configurarla y cómo sacarle el máximo provecho."
+      >
+        <div className="home-ctas">
+          <Link className="btn btn-primary home-btn-glow" href={`${BASE}/primera-api-rest/`}>Empieza con el tutorial</Link>
+          <Link className="btn home-btn-ghost" href={`${BASE}/como-funciona/`}>Cómo funciona</Link>
         </div>
-      </section>
+      </PageHero>
 
       <GuiaLayout>
         {grupos.map((g) => (

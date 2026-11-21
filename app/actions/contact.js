@@ -14,15 +14,15 @@ export async function prepareContactEmail(formData) {
   const message = textValue(formData, "message");
 
   if (!name || !email || !subject || !message) {
-    return { error: "Complete todos los campos requeridos." };
+    return { error: "Completa todos los campos." };
   }
 
   if (!EMAIL_PATTERN.test(email)) {
-    return { error: "Ingrese una dirección de correo válida." };
+    return { error: "Escribe un correo electrónico válido." };
   }
 
   if ([name, email, subject, message].some((value) => value.length > MAX_FIELD_LENGTH)) {
-    return { error: "El mensaje excede la longitud máxima permitida." };
+    return { error: "El mensaje es demasiado largo; resúmelo un poco." };
   }
 
   const params = new URLSearchParams({
