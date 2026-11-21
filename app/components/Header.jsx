@@ -8,10 +8,19 @@ import { useState } from "react";
 const navigation = [
   { href: "/home", label: "Inicio" },
   { href: "/generate-service", label: "Generate Service" },
+  { href: "/generate-service/guia", label: "Guía" },
   { href: "/pruebas", label: "Pruebas" },
   { href: "/nosotros", label: "Empresa" },
   { href: "/contactos", label: "Contacto", contact: true },
 ];
+
+// La guía tiene subpáginas: "Guía" queda activa en todas ellas y
+// "Generate Service" solo en su propia página.
+function esActivo(pathname, href) {
+  const actual = (pathname || "").replace(/\/$/, "");
+  if (href === "/generate-service/guia") return actual.startsWith(href);
+  return actual === href;
+}
 
 export default function Header() {
   const pathname = usePathname();
@@ -41,7 +50,7 @@ export default function Header() {
         <nav className={`menu ${menuOpen ? "menu-open" : ""}`} id="main-navigation">
           {navigation.map(({ href, label, contact }) => (
             <Link
-              aria-current={pathname === href ? "page" : undefined}
+              aria-current={esActivo(pathname, href) ? "page" : undefined}
               className={contact ? "btn-cta" : undefined}
               href={href}
               key={href}
