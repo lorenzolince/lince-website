@@ -14,6 +14,10 @@ RewriteEngine On
 # /servicios se unió con /generate-service (redirección permanente para enlaces antiguos)
 RewriteRule ^servicios/?$ /generate-service/ [R=301,L]
 
+# La portada vive en /home/: el servidor redirige la raíz antes de cargar la página
+# (así Analytics registra una sola vista y no carga la página intermedia de Next.js)
+RewriteRule ^$ /home/ [R=301,L]
+
 # Archivos y carpetas exportados se sirven tal cual (cada página es carpeta/index.html)
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d

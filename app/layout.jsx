@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import Analytics from "./components/Analytics";
 
 export const metadata = {
   title: {
@@ -15,7 +16,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
