@@ -690,7 +690,7 @@ export const capitulos = [
         titulo: "Operaciones generadas: volver a procesar",
         bloques: [
           { p: "Menú lateral → **Administración** → **Operaciones generadas** muestra cada transacción con su webhook, el evento, la fecha y cuántas veces se reintentó. Si una descarga o un envío a tu cliente se interrumpe, pulsa **process** para volver a procesarla, **sin consumir créditos** adicionales." },
-          { nota: "Cada operación admite hasta 4 reintentos.", tipo: "info" },
+          { nota: "Cada operación admite hasta **5 entregas** (la primera descarga y 4 reintentos) durante los **5 días** siguientes a la generación.", tipo: "info" },
           { img: "/images/guia/operaciones-reintentar.webp", alt: "Operaciones generadas con el contador de reintentos y el botón process" },
         ],
       },
@@ -919,7 +919,7 @@ export const capitulos = [
           { p: "Un microservicio generado puede **consumir a otro** y **enviar su resultado** a un tercero, aunque cada uno hable un protocolo distinto. Generate Service se encarga de la transformación entre protocolos: tú solo eliges el origen y el destino." },
           { p: "Por ejemplo, un flujo de facturación:" },
           { flujo: ["API REST recibe el pedido", "Consulta a una API gRPC", "Envía el resultado a RabbitMQ", "Otro micro lo toma", "Genera el PDF y lo envía por correo o SFTP"] },
-          { nota: "Esta integración funciona entre microservicios independientes. Para orquestar varios pasos **dentro de un mismo proyecto**, existe el módulo Multi Tech, que documentaremos en su propia sección.", tipo: "info" },
+          { nota: "Esta integración funciona entre microservicios independientes. Para orquestar varios pasos **dentro de un mismo proyecto**, usa el módulo Multi Tech: [Multi Tech y orquestación](/generate-service/guia/reglas-multitech/).", tipo: "info" },
         ],
       },
       {
@@ -934,6 +934,112 @@ export const capitulos = [
             ["gRPC", "Archivo Protobuf (`.proto`) estándar"],
           ] } },
           { p: "Para conocer el formato exacto, genera un esquema con el modo **Schema** desde cualquier endpoint y úsalo como referencia." },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "reglas-multitech",
+    grupo: "reglas",
+    titulo: "Multi Tech y orquestación (avanzado)",
+    resumen: "Combina tecnologías y encadena pasos en un solo proyecto: Request o Response, pipeline y agregación.",
+    secciones: [
+      {
+        titulo: "Qué es Multi Tech",
+        bloques: [
+          { p: "**Multi Tech** (menú superior) es el módulo para proyectos con **varios métodos y varias tecnologías**: por ejemplo, un Job que consulta una API y deja un archivo en SFTP, y un listener que toma ese archivo, arma un PDF y lo envía por correo. Cada método puede leer de una base de datos o de otra API (REST, SOAP, GraphQL o gRPC) y enviar su resultado a otro destino." },
+          { p: "También es el módulo para **orquestar pasos dentro del mismo proyecto**: encadenarlos uno detrás de otro o ejecutarlos en paralelo y reunir sus resultados." },
+          { nota: "Si tu API publica procedimientos de una sola tecnología, los módulos REST, GraphQL, WebSocket, gRPC o SOAP son más directos. Multi Tech es el módulo más completo y el de mayor consumo de créditos.", tipo: "info" },
+        ],
+      },
+      {
+        titulo: "Los pasos del asistente",
+        bloques: [
+          { pasos: [
+            { titulo: "Método", texto: "**Nombre del método**, **tipo de tecnología** (REST, colas, archivos, SFTP, Job, Quartz…) y **tipo de fuente**: base de datos u otra API. Aquí también eliges si el método **se integra** con otro y si **envía** su resultado a un destino (**Enviar mensaje asíncrono**)." },
+            { titulo: "Integración (si la activaste)", texto: "Eliges el **tipo de integración**, **PIPELINE** o **AGGREGATED**, y el **método de integración**. Más abajo se explica cada uno." },
+            { titulo: "Fuente", texto: "Si la fuente es una base de datos, eliges el procedimiento, la función o la query. Si es otra API, cargas su esquema. Con **Request** en el envío, este paso se salta (ver más abajo)." },
+            { titulo: "Contrato y parámetros", texto: "Formato del archivo de entrada, autenticación, ruta remota y los datos del destino, según la tecnología." },
+            { titulo: "Resumen", texto: "Revisas el método y lo **insertas** en la lista. Repite los pasos para cada método y genera el proyecto completo." },
+          ] },
+        ],
+      },
+      {
+        titulo: "Enviar datos del: Request o Response",
+        bloques: [
+          { p: "Cuando un método envía su resultado a otro destino, el interruptor **Enviar datos del** decide **qué** se envía:" },
+          { tabla: { cab: ["Opción", "Qué hace", "Cuándo usarla"], filas: [
+            ["**Response**", "Consulta la fuente (base de datos o API) y envía **su respuesta**.", "Un Job que consulta una API y deja el resultado en SFTP."],
+            ["**Request**", "Envía **lo que llega al método, tal cual**, sin consultar la fuente.", "Un listener que recibe un CSV y lo convierte en PDF para enviarlo por correo."],
+          ] } },
+          { lista: [
+            "Con **Request**, el esquema del request debe tener **la misma forma que los datos que llegan**: por ejemplo, las columnas del CSV. Como no se consulta ninguna fuente, el asistente **salta el paso de la fuente**.",
+            "Con **Request**, el método no devuelve respuesta: su trabajo es entregar los datos al destino.",
+            "Los **Job** y **Quartz** siempre trabajan con **Response**: se disparan solos y consultan su fuente.",
+            "Cuando el destino es un **Service Activator** (orquestación interna), también se usa **Response**.",
+          ] },
+        ],
+      },
+      {
+        titulo: "Orquestación interna: Service Activator",
+        bloques: [
+          { p: "Un **Service Activator** es un paso **interno** del proyecto: no se publica como endpoint y nadie lo llama desde fuera. Lo dispara otro método del mismo proyecto. Hay dos formas de encadenarlos:" },
+          { tabla: { cab: ["Tipo", "Cómo funciona", "Ejemplo"], filas: [
+            ["**PIPELINE** (en secuencia)", "El resultado de un paso pasa al siguiente. Si un paso falla, se detiene la cadena.", "Insertar un cliente y, a continuación, devolver la lista actualizada."],
+            ["**AGGREGATED** (en paralelo)", "Varios pasos se ejecutan a la vez con la misma entrada, y sus resultados se reúnen en **una sola respuesta**.", "Consultar un cliente en Oracle y su historial en SQL Server, y devolver ambos juntos."],
+          ] } },
+          { flujo: ["Método público recibe la petición", "Service Activator 1", "Service Activator 2", "Respuesta al cliente"] },
+          { p: "**Reglas para armar la cadena:**" },
+          { lista: [
+            "El método que referencias en **Método de integración** debe **existir antes**: crea primero los Service Activator y después el método que los usa.",
+            "El punto de entrada siempre es un **método público** (REST, GraphQL, WebSocket, cola, archivo, Job…). Un Service Activator nunca es el punto de entrada.",
+            "Cada grupo de pasos pertenece a **un solo método público**, y cada Service Activator se usa en **un solo grupo**.",
+            "En un mismo proyecto puede haber **varios grupos** de orquestación.",
+            "Los Service Activator **consumen créditos** como cualquier otro método.",
+          ] },
+        ],
+      },
+      {
+        titulo: "Interna o externa: cuál elegir",
+        bloques: [
+          { tabla: { cab: ["", "Orquestación interna (Multi Tech)", "Orquestación externa"], filas: [
+            ["Dónde ocurre", "Dentro de **un mismo proyecto**", "Entre **microservicios independientes**"],
+            ["Cómo se comunica", "Llamadas internas (Service Activator)", "REST, GraphQL, SOAP, gRPC, WebSocket, colas o archivos"],
+            ["Cuándo conviene", "Pasos que siempre van juntos y se despliegan juntos", "Piezas que escalan, cambian o las mantienen equipos distintos"],
+          ] } },
+          { p: "La orquestación externa se explica en [Integrar microservicios entre sí](/generate-service/guia/reglas-integracion/)." },
+        ],
+      },
+      {
+        titulo: "Esquemas cuando la fuente es otra API",
+        bloques: [
+          { p: "Si un método lee de una API REST o GraphQL, cargas un **ejemplo en JSON** con dos raíces: primero el **request** y después el **response**. Generate Service arma las clases a partir de ese ejemplo:" },
+          { lista: [
+            "El **tipo** de cada campo sale del **valor de ejemplo**: texto, número, booleano, fecha, objeto o lista.",
+            "Una **lista** toma el tipo de su primer elemento.",
+            "Para un campo libre, que puede traer cualquier estructura, usa el valor `\"JSON\"`: se recibe y se reenvía tal cual.",
+            "El **response** es un objeto. Los campos que no declares se ignoran al leer la respuesta, así que basta con declarar los que usas.",
+          ] },
+          { codigo: '{\n  "PedidosRequest": { "domain": "JSON", "limit": 50 },\n  "PedidosResponse": { "records": [ { "name": "S00012", "amount_total": 150.75 } ] }\n}' },
+        ],
+      },
+      {
+        titulo: "Ejemplo real: del pedido al documento",
+        bloques: [
+          { p: "Un proyecto Multi Tech con dos métodos integra un ERP con archivos y correo, sin programar:" },
+          { flujo: ["Job cada minuto", "Consulta los pedidos confirmados en la API del ERP (Response)", "Deja un CSV en SFTP", "Listener SFTP toma el CSV (Request)", "Arma un PDF con la plantilla", "Lo envía por correo"] },
+          { p: "Cambiar el destino (una cola en lugar del correo, otra carpeta SFTP o un WebSocket) es configuración del método, no código." },
+        ],
+      },
+      {
+        titulo: "Tecnologías que se combinan",
+        bloques: [
+          { lista: [
+            "**REST, GraphQL y WebSocket** se combinan entre sí y con mensajería, archivos, schedulers y Service Activator.",
+            "**SOAP** y **gRPC** se combinan con mensajería, archivos, schedulers y Service Activator.",
+            "REST, GraphQL y WebSocket van en proyectos **distintos** de SOAP y gRPC: si necesitas ambos, genera dos microservicios e intégralos entre sí.",
+          ] },
+          { nota: "Este capítulo se ampliará con capturas del asistente y más ejemplos.", tipo: "info" },
         ],
       },
     ],
@@ -961,6 +1067,18 @@ export const capitulos = [
           { p: "Los detalles legales están en los Términos de Servicio y Licencia que aceptas al entrar a la plataforma." },
         ],
       },
+      {
+        titulo: "Cerrar tu cuenta",
+        bloques: [
+          { p: "Puedes dar de baja tu cuenta cuando quieras escribiendo a **lorenzolince@lincetechnology.net** desde el correo con el que entras a la plataforma. Al darla de baja:" },
+          { lista: [
+            "**Se eliminan** tus procesos, eventos, conexiones (datasources), webhooks, configuraciones de CI/CD, variables de entorno y **todos los créditos disponibles en ese momento**.",
+            "**Conservas** el código fuente que recibiste, y **tus APIs ya generadas siguen funcionando** hasta que venza su licencia.",
+            "Te enviamos un correo de confirmación. Si tienes la plataforma abierta, verás un aviso y tu sesión se cerrará.",
+            "Puedes volver cuando quieras con el mismo correo: empiezas con tu cuenta en limpio y vuelves a aceptar los Términos.",
+          ] },
+        ],
+      },
     ],
   },
   {
@@ -976,7 +1094,8 @@ export const capitulos = [
             ["¿Puedo modificar el código generado?", "Sí. El código fuente es tuyo para extenderlo con tu propia lógica."],
             ["¿Qué motores soporta?", "Oracle, SQL Server, PostgreSQL, MySQL y MariaDB."],
             ["¿Dónde corren mis APIs?", "En tu infraestructura: Docker, Kubernetes o tu servidor de aplicaciones (Tomcat, WildFly, WebLogic)."],
-            ["¿Se pierden mis créditos?", "No. Se mantienen en tu cuenta hasta que los uses."],
+            ["¿Se pierden mis créditos?", "Se mantienen en tu cuenta hasta que los uses o des de baja tu cuenta."],
+            ["¿Cómo doy de baja mi cuenta?", "Escríbenos a lorenzolince@lincetechnology.net desde tu correo de acceso. Los créditos disponibles se eliminan con la cuenta. [Ver detalles](/generate-service/guia/seguridad/)."],
             ["Se cortó una descarga, ¿pierdo los créditos?", "No. Reinténtala desde Operaciones generadas, sin costo adicional."],
             ["¿Puedo probar sin instalar nada en servidores?", "Sí. Con el proyecto generate-service-test y Docker en tu máquina."],
             ["¿Ofrecen acompañamiento?", "Sí. Lince Technology ofrece soporte, plantillas de CI/CD y acompañamiento para empresas."],
