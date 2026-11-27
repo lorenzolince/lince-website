@@ -6,6 +6,22 @@ export const metadata = {
   title: "Generate Service: de tu base de datos a microservicios en minutos",
   description:
     "Convierte procedimientos, funciones y queries en microservicios Spring Boot listos para producción: REST, GraphQL, gRPC, SOAP, mensajería, archivos y CI/CD. Credenciales en tu red y código fuente tuyo.",
+  alternates: { canonical: "/generate-service/" },
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    siteName: "Lince Technology",
+    url: "/generate-service/",
+    title: "Tus sistemas, conectados en minutos | Generate Service",
+    description:
+      "Convierte la información y la lógica que tu empresa ya tiene en servicios listos para apps, socios, canales digitales y procesos automáticos. Pruébalo gratis.",
+    images: [{ url: "/og/generate-service.png", width: 1200, height: 630, alt: "Generate Service: tus sistemas, conectados en minutos" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tus sistemas, conectados en minutos | Generate Service",
+    images: ["/og/generate-service.png"],
+  },
 };
 
 function Boton({ btn, oscuro }) {

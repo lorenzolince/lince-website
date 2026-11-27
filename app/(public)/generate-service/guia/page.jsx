@@ -4,9 +4,25 @@ import PageHero from "../../../components/PageHero";
 import { capitulos, grupos } from "../../../components/guia/guiaData";
 
 export const metadata = {
-  title: "Guía de Generate Service | Lince Technology",
+  title: "Guía de Generate Service",
   description:
     "Aprende a usar Generate Service paso a paso: datasources, cliente local, variables de entorno, CI/CD, créditos, eventos y tu primera API REST.",
+  alternates: { canonical: "/generate-service/guia/" },
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    siteName: "Lince Technology",
+    url: "/generate-service/guia/",
+    title: "Guía visual de Generate Service, paso a paso",
+    description:
+      "Desde tu primer datasource hasta tu API corriendo en Kubernetes, explicado con capturas reales.",
+    images: [{ url: "/og/guia.png", width: 1200, height: 630, alt: "Guía visual de Generate Service" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Guía visual de Generate Service, paso a paso",
+    images: ["/og/guia.png"],
+  },
 };
 
 export default function GuiaInicio() {
