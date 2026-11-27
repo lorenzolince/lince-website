@@ -37,6 +37,7 @@ export const capitulos = [
         bloques: [
           { p: "Generate Service convierte la lógica que ya tienes en tu base de datos —procedimientos, funciones, packages y queries— en **microservicios Spring Boot listos para producción**. Tú eliges qué publicar, en qué tecnología y cómo quieres recibirlo; la plataforma escribe el proyecto completo por ti." },
           { flujo: ["Tu base de datos o tu esquema", "Eliges qué publicar", "Generate Service genera", "Recibes tu microservicio"] },
+          { img: "/images/guia/portada.webp", alt: "Portada de Generate Service: de tus fuentes de datos a APIs listas" },
         ],
       },
       {
@@ -94,7 +95,7 @@ export const capitulos = [
         bloques: [
           { p: "Entra a [generate-service.com](https://generate-service.com) y elige cómo iniciar sesión:" },
           { lista: ["**Google** o **GitHub**: un clic, sin formularios.", "**Correo electrónico**: completa tus datos y confirma el código que te llega por correo."] },
-          { img: "/images/login.png", alt: "Pantalla de inicio de sesión de Generate Service" },
+          { img: "/images/guia/login.webp", alt: "Ventana de inicio de sesión de Generate Service" },
         ],
       },
       {
@@ -161,31 +162,34 @@ export const capitulos = [
             ["Origen", "DATABASE", "DATABASE usa un datasource; API_SOURCE usa un archivo de esquema."],
             ["Tipo de base de datos", "MariaDB", "Motor de tu base."],
           ] } },
-          { img: "/images/src/generate-api-rest.png", alt: "Formulario del módulo REST con los datos del proyecto" },
+          { img: "/images/guia/generate-api-rest.webp", alt: "Módulo REST: proyecto, métodos a generar y panel «Cómo recibir tu API»" },
         ],
       },
       {
         titulo: "3. Elige el origen: datasource o archivo de esquema",
         bloques: [
-          { p: "**Con datasource:** selecciona la conexión y el esquema (owner), y en **choose procedure** pulsa **Edit**. Verás un árbol con packages, procedimientos y funciones." },
-          { img: "/images/src/SelectPLSql.png", alt: "Árbol de selección de procedimientos y funciones" },
-          { p: "**Con archivo de esquema:** elige API_SOURCE y adjunta el archivo. El proyecto de prueba ya trae esquemas listos en la carpeta `schemas/` de cada motor, o puedes generarlos con el cliente local." },
-          { img: "/images/test/UploadFileSchemmaInGenerateService.png", alt: "Adjuntar un archivo de esquema en Generate Service" },
+          { p: "**Con datasource:** selecciona la conexión y el esquema (owner), y en **Procedimientos** pulsa **Editar**. Verás un árbol con packages, procedimientos y funciones." },
+          { img: "/images/guia/elegir-procedimiento.webp", alt: "Árbol de selección de procedimientos y funciones" },
+          { p: "**Con archivo de esquema:** elige API_SOURCE, pulsa el ícono de agregar y, en la ventana **Origen de datos del método**, sube el archivo con **Subir archivo**. El proyecto de prueba ya trae esquemas listos en la carpeta `schemas/` de cada motor, o puedes generarlos con el cliente local." },
+          { img: "/images/guia/origen-esquema.webp", alt: "Ventana Origen de datos del método con la carga de un archivo de esquema" },
         ],
       },
       {
         titulo: "4. Selecciona qué publicar",
         bloques: [
-          { p: "Cada objeto que marques se convierte en un endpoint. También puedes escribir tus propias queries con parámetros:" },
+          { p: "Cada objeto que marques se convierte en un endpoint. También puedes escribir tus propias queries con **Agregar query**: una sola sentencia `SELECT`, `INSERT`, `UPDATE` o `DELETE` por método, con los parámetros escritos como `:nombre`:" },
           { codigo: "SELECT last_name, first_name FROM owner.person WHERE email = :param_email" },
-          { img: "/images/test/RegisterEndpointRestByProcesdure.png", alt: "Endpoints registrados a partir de procedimientos" },
+          { img: "/images/guia/agregar-query.webp", alt: "Agregar un método desde una consulta SQL, con plantillas y el formato de la consulta" },
+          { p: "Las queries agregadas quedan en una lista dentro de la ventana: pasa el cursor sobre una para ver su SQL, o quítala con la papelera. Pasan a la tabla junto con los procedimientos al pulsar **Agregar**." },
+          { img: "/images/guia/query-agregada.webp", alt: "Lista de queries agregadas con su tipo" },
+          { img: "/images/guia/metodos-a-generar.webp", alt: "Tabla Métodos a generar con los procedimientos elegidos" },
         ],
       },
       {
         titulo: "5. Elige el modo y genera",
         bloques: [
-          { p: "Debajo de la tabla eliges el modo: **Build, Test, Schema, Src, devops, devops_test o devops_src**. Marca **Test** para que tu cliente local compile y levante la API en tu máquina (necesitas el [cliente local configurado](/generate-service/guia/cliente-local/)). Si prefieres el código, marca **Src**; si quieres el ejecutable, **Build**. Al pasar el mouse sobre el botón verás cuántos créditos consumirá." },
-          { img: "/images/test/SelectWebHookAndSendGenerate-service-client.png", alt: "Seleccionar el webhook del cliente local y generar" },
+          { p: "En **Cómo recibir tu API** eliges la entrega: **Binario, Prueba local, Solo esquemas, Código fuente, CI/CD, CI/CD + prueba o CI/CD + código**; al pasar el cursor sobre cada una ves qué entrega y, sobre el botón, los créditos. Marca **Prueba local** para que tu cliente local compile y levante la API en tu máquina (necesitas el [cliente local configurado](/generate-service/guia/cliente-local/)). Si prefieres el código, marca **Src**; si quieres el ejecutable, **Build**. Al pasar el mouse sobre el botón verás cuántos créditos consumirá." },
+          { img: "/images/guia/modo-entrega.webp", alt: "Panel Cómo recibir tu API con las siete entregas" },
         ],
       },
       {
@@ -224,18 +228,17 @@ export const capitulos = [
             ["Service Name / base de datos", "En Oracle, el *service name*; en los demás motores, el nombre de la base."],
             ["Esquemas", "Los esquemas (owners) que quieres explorar."],
           ] } },
-          { img: "/images/config/DatasourceConfig.png", alt: "Formulario de configuración de un datasource" },
+          { img: "/images/guia/config-datasource.webp", alt: "Formulario de un datasource Oracle con la ayuda de cada campo" },
         ],
       },
       {
         titulo: "Prueba y guarda",
         bloques: [
           { pasos: [
-            { titulo: "Prueba la conexión", texto: "Usa **Prueba de conexión**. Si es correcta, verás «Conexión exitosa»." },
+            { titulo: "Prueba la conexión", texto: "Usa **Probar conexión**. Si es correcta, verás «Conexión exitosa» y la lista de esquemas disponibles." },
             { titulo: "Elige los esquemas", texto: "Selecciona los esquemas que quieres usar al generar." },
             { titulo: "Guarda", texto: "El datasource queda disponible en todos los módulos de generación." },
           ] },
-          { img: "/images/guia/datasource-conexion-exitosa.webp", alt: "Datasource Oracle con la prueba de conexión exitosa y la lista de esquemas" },
           { nota: "Puedes registrar varios datasources (desarrollo, pruebas, distintos motores) y elegir cuál usar en cada generación.", tipo: "info" },
         ],
       },
@@ -271,8 +274,8 @@ export const capitulos = [
       {
         titulo: "1. Instala el cliente",
         bloques: [
-          { p: "En la plataforma, menú lateral → **Configuraciones** → **Client webhook**, pulsa **Download** («Tool to generate Schemas») para descargar el `docker-compose.yml` del cliente, y levántalo:" },
-          { img: "/images/test/DownLoadClientGenerateService.png", alt: "Descarga del cliente local desde la plataforma" },
+          { p: "En la plataforma, menú lateral → **Configuraciones** → **Cliente local (webhook)**, pulsa **Descargar docker-compose.yml** y levanta el cliente:" },
+          { img: "/images/guia/cliente-instalar.webp", alt: "Instalación del cliente local: los tres pasos y la descarga del docker-compose.yml" },
           { codigo: "docker compose up -d" },
           { img: "/images/test/RunClientGenerateService.png", alt: "Cliente local en ejecución" },
         ],
@@ -302,7 +305,7 @@ export const capitulos = [
             ["URL", "Dirección del cliente."],
             ["Token", "Clave que valida que los envíos vienen de tu cuenta. Trátala como una contraseña."],
           ] } },
-          { img: "/images/guia/config-client-webhook.webp", alt: "Registro del webhook del cliente local (token oculto)" },
+          { img: "/images/guia/config-client-webhook.webp", alt: "Página del cliente local: instalación, webhooks y el registro de un webhook" },
         ],
       },
       {
@@ -442,10 +445,10 @@ export const capitulos = [
             ["Nombre", "Nombre de la variable, por ejemplo `DB_MARIADB_HOST`."],
             ["Valor", "El valor que quieres usar."],
             ["Descripción", "Para qué sirve, como referencia."],
-            ["**Activo**", "Escribe el valor en el archivo `.env` del proyecto generado."],
-            ["**Propiedad activa**", "Usa el valor como predeterminado dentro de `application.properties`."],
+            ["**En el .env**", "Escribe el valor en el archivo `.env` del proyecto generado. Es lo recomendado, sobre todo para contraseñas."],
+            ["**En el código**", "Usa el valor como predeterminado dentro de `application.properties`. Evítalo con contraseñas o tokens."],
           ] } },
-          { img: "/images/guia/variables-entorno.webp", alt: "Variables de entorno con las columnas Activo y Propiedad activa" },
+          { img: "/images/guia/variables-entorno.webp", alt: "Variables de entorno con la explicación de cómo se aplican" },
         ],
       },
       {
@@ -495,7 +498,9 @@ export const capitulos = [
             ["Parámetros", "Variables adicionales que tu pipeline espera."],
             ["Webhook (opcional)", "Si tu CI/CD es interno, el cliente local hace de puente."],
           ] } },
-          { img: "/images/ci-cd/ConsifigCI-CD.png", alt: "Configuración de la integración de CI/CD" },
+          { img: "/images/guia/config-ci-cd.webp", alt: "Configuración de una integración de CI/CD: pipeline, autenticación, parámetros y webhook" },
+          { p: "Las integraciones guardadas quedan en la lista; al generar con CI/CD eliges una de ellas." },
+          { img: "/images/guia/ci-cd-lista.webp", alt: "Lista de integraciones de CI/CD configuradas" },
         ],
       },
       {
@@ -522,8 +527,8 @@ export const capitulos = [
       {
         titulo: "3. Genera y despliega",
         bloques: [
-          { p: "Al generar, elige el modo **DEVOPS** (despliegue), **DEVOPS_SRC** (enviar el código a tu pipeline) o **DEVOPS_TEST** (despliegue temporal para pruebas)." },
-          { img: "/images/ci-cd/GenerateApiAndSendCI-CD.png", alt: "Generar una API y enviarla al CI/CD" },
+          { p: "Al generar, elige la entrega **CI/CD** (despliegue), **CI/CD + código** (enviar el código a tu pipeline) o **CI/CD + prueba** (despliegue temporal para pruebas), pulsa **Enviar a CI/CD** y elige la integración." },
+          { img: "/images/guia/ci-cd-enviar.webp", alt: "Elegir la integración continua y enviar al pipeline" },
           { img: "/images/ci-cd/FinshPipeline.png", alt: "Pipeline terminado con todos los pasos en verde" },
           { p: "En el flujo de ejemplo, los secretos se cifran en el repositorio de manifiestos y **ArgoCD** sincroniza y despliega en Kubernetes." },
           { img: "/images/ci-cd/encriptEnviromnetforSeccrets.png", alt: "Secretos cifrados en el repositorio de manifiestos" },
@@ -597,14 +602,14 @@ export const capitulos = [
       {
         titulo: "Esquemas: contratos reutilizables",
         bloques: [
-          { p: "Con **Schema** descargas un `.zip` con los esquemas de los endpoints seleccionados. Puedes adjuntarlos después como origen **API_SOURCE** para generar nuevos servicios sin volver a conectarte a la base." },
-          { img: "/images/guia/generate-schema.webp", alt: "Modo Schema: descarga de los esquemas del proyecto" },
+          { p: "Con **Solo esquemas** descargas un `.zip` con los esquemas de los endpoints seleccionados. Puedes adjuntarlos después como origen **API_SOURCE** para generar nuevos servicios sin volver a conectarte a la base." },
+          { img: "/images/guia/modo-entrega.webp", alt: "Panel Cómo recibir tu API: Solo esquemas, Código fuente, Binario y las entregas a CI/CD" },
         ],
       },
       {
         titulo: "Código fuente: tuyo para extender",
         bloques: [
-          { img: "/images/src/DownLoadSourceCode.png", alt: "Descarga del código fuente" },
+          { img: "/images/guia/descargar-codigo.webp", alt: "Descarga del código fuente del proyecto generado" },
           { img: "/images/src/EdirSourceCode.png", alt: "Código fuente abierto en el editor" },
           { img: "/images/src/CompileSorceCode.png", alt: "Compilación del código fuente" },
         ],
@@ -612,7 +617,7 @@ export const capitulos = [
       {
         titulo: "Binario: listo para ejecutar",
         bloques: [
-          { img: "/images/build/GenerateApiBinaryOptionBuild.png", alt: "Opción BUILD al generar" },
+          { img: "/images/guia/modo-binario.webp", alt: "Entrega Binario elegida al generar" },
           { img: "/images/build/EstructruaArtefactJar.png", alt: "Estructura del artefacto generado" },
         ],
       },
@@ -638,7 +643,7 @@ export const capitulos = [
           ] },
           { p: "La tabla completa de créditos por tecnología está en la página **Plans**:" },
           { img: "/images/guia/plans2.webp", alt: "Créditos requeridos por tecnología y endpoint" },
-          { p: "Antes de generar, pasa el mouse sobre el botón **generate Api**: verás la tecnología, los endpoints y los créditos que consumirá esa generación." },
+          { p: "Antes de generar, pasa el mouse sobre el botón **Generar API**: verás la tecnología, los endpoints y los créditos que consumirá esa generación." },
           { img: "/images/guia/tooltips-credits-consume.webp", alt: "Resumen de créditos antes de generar una prueba" },
         ],
       },
@@ -646,20 +651,22 @@ export const capitulos = [
         titulo: "Qué define el plan",
         bloques: [
           { p: "El plan define **cuánto tiempo funciona cada API** que generas, contado desde el día en que la generas: 3, 6, 9 o 12 meses, o permanente. Los planes más largos incluyen un descuento por crédito. Te avisamos antes de que termine la vigencia, para que la generes de nuevo o pases al plan permanente." },
-          { nota: "Los precios vigentes se muestran en la página **Plans** de la plataforma. En las imágenes de esta guía están ocultos.", tipo: "info" },
+          { nota: "Los precios vigentes se muestran siempre en la página **Plans** de la plataforma; los de las imágenes de esta guía son de referencia.", tipo: "info" },
         ],
       },
       {
         titulo: "Comprar créditos",
         bloques: [
           { pasos: [
-            { titulo: "Cotiza", texto: "Menú superior → **Plans**. Elige el plan y la cantidad de créditos y pulsa **Calculate quote**: verás el detalle, el ITBMS (7 %, solo para compras desde Panamá) y hasta cuándo funcionarán tus APIs.", img: "/images/guia/plans.webp" },
-            { titulo: "Paga con PayPal", texto: "Con tu cuenta de PayPal o con **tarjeta de débito o crédito**, sin salir de la plataforma.", img: "/images/guia/paypal.webp" },
-            { titulo: "Créditos cargados", texto: "Al confirmarse el pago, los créditos se cargan en tu cuenta y recibes la confirmación.", img: "/images/guia/paypal-recive.webp" },
-            { titulo: "Tu factura", texto: "La plataforma te avisa cuando tu factura está lista, con el enlace para verla y descargarla.", img: "/images/guia/paypal-invoice.webp" },
+            { titulo: "Cotiza", texto: "Menú superior → **Plans**. Elige el plan y la cantidad de créditos y pulsa **Cotizar** (la primera vez te pide tus datos de facturación): verás el detalle, el ITBMS (7 %, solo para compras desde Panamá) y hasta cuándo funcionarán tus APIs. Si cambias el plan o la cantidad, el total se recalcula solo.", img: "/images/guia/plans.webp" },
+            { titulo: "Paga con PayPal", texto: "Con tu cuenta de PayPal o con **tarjeta de débito o crédito**, sin salir de la plataforma." },
+            { titulo: "Créditos cargados", texto: "Al confirmarse el pago, los créditos se cargan en tu cuenta y recibes la confirmación." },
+            { titulo: "Tu factura", texto: "Recibes la factura por correo y queda en menú lateral → **Administración** → **Mis facturas**, donde puedes descargarla en PDF.", img: "/images/guia/mis-facturas.webp" },
           ] },
-          { p: "La factura incluye el detalle de la compra y el ITBMS:" },
-          { img: "/images/guia/paypal-factura.webp", alt: "Factura de la compra de créditos (datos personales y montos ocultos)" },
+          { p: "La factura incluye el detalle de la compra, el ITBMS y la **firma digital de Lince Technology**, con un código QR y un código de verificación:" },
+          { img: "/images/guia/factura.webp", alt: "Factura firmada de la compra de créditos (datos del cliente de ejemplo)" },
+          { p: "Para comprobar que una factura es auténtica, escanea su QR o entra a [generate-service.com/verificar](https://generate-service.com/verificar): puedes escribir el código o subir el PDF. Cualquier cambio en el documento se detecta." },
+          { img: "/images/guia/verificar-factura.webp", alt: "Página pública para verificar una factura" },
           { nota: "¿Tu empresa necesita un paquete corporativo con orden de compra y factura? Escríbenos desde la página Plans y lo diseñamos a tu medida.", tipo: "info" },
         ],
       },
@@ -681,17 +688,17 @@ export const capitulos = [
       {
         titulo: "Eventos: tu historial",
         bloques: [
-          { p: "Menú lateral → **Administración** → **Eventos**. Cada generación del mes queda registrada con el nombre del proyecto, el origen, el tipo de evento (`GENERATE_TEST`, `GENERATE_SCHEMA`, `GENERATE_SOURCE`…), el tipo de API, el tipo de contenedor, la fecha y la cantidad de recursos publicados." },
-          { p: "Arriba verás los totales del mes: recursos en código fuente, en binario, en esquemas, en CI/CD y en pruebas. Puedes buscar y cambiar de mes." },
+          { p: "Menú lateral → **Administración** → **Eventos**. Cada generación del mes queda registrada con el nombre del proyecto, el origen, el tipo de entrega (código fuente, binario, prueba local, solo esquemas o CI/CD), la tecnología, el servidor, la fecha y la cantidad de endpoints. Pulsa el número de **Endpoints** para ver el detalle de cada generación." },
+          { p: "Arriba verás los totales del mes por tipo de entrega; pasa el cursor sobre cada uno para ver qué cuenta. Puedes buscar y cambiar de mes." },
           { img: "/images/guia/eventos.webp", alt: "Eventos del mes con totales por tipo" },
         ],
       },
       {
         titulo: "Operaciones generadas: volver a procesar",
         bloques: [
-          { p: "Menú lateral → **Administración** → **Operaciones generadas** muestra cada transacción con su webhook, el evento, la fecha y cuántas veces se reintentó. Si una descarga o un envío a tu cliente se interrumpe, pulsa **process** para volver a procesarla, **sin consumir créditos** adicionales." },
+          { p: "Menú lateral → **Administración** → **Operaciones generadas** muestra cada transacción con su webhook, el evento, la fecha y cuántas veces se reintentó. Si una descarga o un envío a tu cliente se interrumpe, vuelve a procesarla **sin consumir créditos** adicionales: **Descargar** para código fuente y esquemas, **Reenviar al cliente** para binario y prueba local, y **Disparar CI/CD** para las integraciones." },
           { nota: "Cada operación admite hasta **5 entregas** (la primera descarga y 4 reintentos) durante los **5 días** siguientes a la generación.", tipo: "info" },
-          { img: "/images/guia/operaciones-reintentar.webp", alt: "Operaciones generadas con el contador de reintentos y el botón process" },
+          { img: "/images/guia/operaciones-reintentar.webp", alt: "Operaciones generadas con el contador de reintentos y la acción de cada fila" },
         ],
       },
     ],
@@ -950,18 +957,26 @@ export const capitulos = [
           { p: "**Multi Tech** (menú superior) es el módulo para proyectos con **varios métodos y varias tecnologías**: por ejemplo, un Job que consulta una API y deja un archivo en SFTP, y un listener que toma ese archivo, arma un PDF y lo envía por correo. Cada método puede leer de una base de datos o de otra API (REST, SOAP, GraphQL o gRPC) y enviar su resultado a otro destino." },
           { p: "También es el módulo para **orquestar pasos dentro del mismo proyecto**: encadenarlos uno detrás de otro o ejecutarlos en paralelo y reunir sus resultados." },
           { nota: "Si tu API publica procedimientos de una sola tecnología, los módulos REST, GraphQL, WebSocket, gRPC o SOAP son más directos. Multi Tech es el módulo más completo y el de mayor consumo de créditos.", tipo: "info" },
+          { img: "/images/guia/multitech.webp", alt: "Módulo Multi Tech con el asistente para agregar un método" },
         ],
       },
       {
         titulo: "Los pasos del asistente",
         bloques: [
           { pasos: [
-            { titulo: "Método", texto: "**Nombre del método**, **tipo de tecnología** (REST, colas, archivos, SFTP, Job, Quartz…) y **tipo de fuente**: base de datos u otra API. Aquí también eliges si el método **se integra** con otro y si **envía** su resultado a un destino (**Enviar mensaje asíncrono**)." },
-            { titulo: "Integración (si la activaste)", texto: "Eliges el **tipo de integración**, **PIPELINE** o **AGGREGATED**, y el **método de integración**. Más abajo se explica cada uno." },
-            { titulo: "Fuente", texto: "Si la fuente es una base de datos, eliges el procedimiento, la función o la query. Si es otra API, cargas su esquema. Con **Request** en el envío, este paso se salta (ver más abajo)." },
-            { titulo: "Contrato y parámetros", texto: "Formato del archivo de entrada, autenticación, ruta remota y los datos del destino, según la tecnología." },
-            { titulo: "Resumen", texto: "Revisas el método y lo **insertas** en la lista. Repite los pasos para cada método y genera el proyecto completo." },
+            { titulo: "Método", texto: "**Nombre del método**, **tipo de tecnología** (REST, colas, archivos, SFTP, Job, Quartz…) y **tipo de fuente**: base de datos u otra API. Aquí también eliges si el método **se integra** con otro: al elegir **Sí** aparece el paso **Envío**.", img: "/images/guia/multitech-1.webp" },
+            { titulo: "Envío (si lo activaste)", texto: "A dónde envía el método su resultado (otro servicio, una cola, un archivo, un correo o un Service Activator), el formato y si envía el **Request** o el **Response**. La ventana explica qué se envía en cada caso.", img: "/images/guia/multitech-2.webp" },
+            { titulo: "Origen", texto: "Si la fuente es una base de datos, eliges el motor y si usas un **datasource configurado** o **subes un archivo de esquema**. Si es otra API, indicas su endpoint, cómo se envían los datos, la autenticación y los encabezados. Con **Request** en el envío, este paso se salta (ver más abajo).", img: "/images/guia/multitech-3.webp" },
+            { titulo: "Detalle del origen", texto: "El procedimiento, la función o la query del datasource, o el archivo de esquema que subes.", img: "/images/guia/multitech-4.webp" },
+            { titulo: "Resumen", texto: "Revisas el método y lo **registras** en la lista. Repite los pasos para cada método y genera el proyecto completo.", img: "/images/guia/multitech-5.webp" },
           ] },
+        ],
+      },
+      {
+        titulo: "La lista de métodos",
+        bloques: [
+          { p: "Cada método registrado queda en la tabla **Métodos** con su tecnología, su origen y su tipo de envío. Abajo eliges cómo recibir la API; el tooltip del botón muestra los créditos que consumirá." },
+          { img: "/images/guia/multitech-fin.webp", alt: "Lista de métodos de Multi Tech y el panel «Cómo recibir tu API»" },
         ],
       },
       {
